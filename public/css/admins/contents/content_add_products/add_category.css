@@ -1,0 +1,129 @@
+#id-form-container-infor-category {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.header-infor-category {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.fa-solid {
+    position: absolute;
+    right: 5px;
+    top: 20%;
+    cursor: pointer;
+}
+
+.content-infor-category {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.table-infor-category {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.button-infor-category-zone {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+td,
+th {
+    padding: 10px;
+    justify-content: center;
+}
+
+.button-infor-category-zone {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.delete-detail-category {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    background: gray;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.img-infor-category-zone {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-file-btn {
+    width: auto;
+    height: 50px;
+    display: flex;
+    background: gray;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.img-category-zone {
+    width: 100%;
+    height: auto;
+    display: none;
+    justify-content: center;
+}
+
+.img-category {
+    width: 40%;
+    height: 80px;
+    position: relative;
+}
+
+.class-img-category {
+    width: 100%;
+    height: 100%;
+}
+
+.close-img-category {
+    border: none;
+    background: none;
+    right: 0;
+    position: absolute;
+}
+
+.button-category-zone {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-evenly;
+}
+
+.button-category-zone button {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-evenly;
+}
+
+.check-hot {
+    transform: scale(2);
+}
