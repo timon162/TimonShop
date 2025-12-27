@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
@@ -9,8 +9,10 @@ use App\Http\Requests\CreateProductRequest;
 use App\Services\Interfaces\SupplierInterfaceService;
 use App\Services\Interfaces\CategoryInterfaceService;
 use App\Services\Interfaces\ProductInterfaceService;
+use App\Http\Requests\ProductIdRequest;
+use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class ProductController extends Controller
 {
     public function __construct(
         protected CategoryInterfaceService $categoryService,
@@ -30,11 +32,12 @@ class AdminController extends Controller
 
     public function viewInformationproduct()
     {
+        $getproduct = $this->productService->getProduct();
         $getSupplier = $this->supplierService->getSupplier();
         $getCategory = $this->categoryService->getCategory();
         return view(
             'admins.content_admins.content_information_products.main_information_product',
-            ['dataSupplier' => $getSupplier, 'dataCategory' => $getCategory]
+            ['dataSupplier' => $getSupplier, 'dataCategory' => $getCategory, 'dataProduct' => $getproduct]
         );
     }
 
@@ -113,6 +116,8 @@ class AdminController extends Controller
             'product_image' => $urlCaterogy,
             'product_code' => $validated['code_create_product'],
             'product_decription' => $validated['decription_create_product'],
+            'basicOption' => $validated['basicOptions'],
+            'buyOption' => $validated['buyOptions'],
             'created_at' => now(),
         ];
 
@@ -123,5 +128,27 @@ class AdminController extends Controller
         }
 
         return ['mess' => 'Thêm thành công', 'nameProduct' => $product['product_name']];
+    }
+
+    public function viewDetailProduct(int $id)
+    {
+
+        $product = $this->productService->getProductById($id);
+        $imageDescription = $this->productService->getImageDescriptionById($id);
+        $basicOption = $this->productService->getBasicOptionById($id);
+        $showOption = $basicOption->take(3);
+        $buyOption = $this->productService->getBuyOptionById($id);
+        $nameBuyOption = $buyOption->groupBy('buy_option_name');
+
+        return view(
+            'admins.content_admins.content_detail_products.detail_view',
+            [
+                'detailProduct' => $product,
+                'imageDescription' => $imageDescription,
+                'basicOption' => $basicOption,
+                'showOption' => $showOption,
+                'nameBuyOption' => $nameBuyOption,
+            ]
+        );
     }
 }

@@ -19,6 +19,6 @@ class CheckRole
         if (Auth::check() && Auth::user()->role == 'admin') {
             return $next($request);
         }
-        return redirect()->route('profile-user');
+        return redirect()->route('profile.user');
     }
 }

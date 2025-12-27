@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 
 interface SupplierInterfaceRepository
 {
-    public function postSupplier($data): int;
+    public function postSupplier($data): bool;
+
     public function getSupplier(): Collection;
 }

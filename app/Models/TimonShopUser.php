@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class TimonShopUser extends Authenticatable
 {
@@ -18,4 +19,10 @@ class TimonShopUser extends Authenticatable
     protected $guarded = [
         'remember_token'
     ];
+
+    public function getAvatarAttribute()
+    {
+        return $this->image_user
+            ?: 'https://cdn-icons-png.flaticon.com/256/3293/3293466.png';
+    }
 }

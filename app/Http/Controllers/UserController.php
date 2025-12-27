@@ -30,6 +30,5 @@ class UserController extends Controller
         if ($respone) {
             return response()->json(['mess' => 'cập nhật thành công']);
         }
-        // return response()->json($data);
     }
 }

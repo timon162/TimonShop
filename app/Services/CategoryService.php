@@ -10,7 +10,7 @@ class CategoryService implements CategoryInterfaceService
 {
     public function __construct(protected CategoryInterfaceRepository $categoryRepo) {}
 
-    public function postCategory($data): int
+    public function postCategory($data): bool
     {
         $response = $this->categoryRepo->postCategory($data);
         return $response;

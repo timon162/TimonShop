@@ -19,6 +19,25 @@
     <link rel="stylesheet" href="{{ asset('css/partials/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admins/layout_master_admin.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/main_add_product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_category.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_supplier.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('css/admins/contents/content_information_products/main_information_product.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/admins/contents/content_information_products/information_product.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/admins/contents/content_information_products/information_supplier.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/admins/contents/content_information_products/information_category.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_carts/cart_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_homes/home_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_detail_products/detail_product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_profiles/profile_admin.css') }}">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>admin View</title>
 </head>
@@ -39,5 +58,15 @@
 <script src="{{ asset('js/users/partials/sidebar.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="{{ asset('js/admins/contents/content_add_products/add_category.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_add_products/add_supplier.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_add_products/add_product.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_add_products/main_add_product.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_homes/home.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_detail_products/detail_product.js') }}"></script>
+<script src="{{ asset('js/admins/profile_admin.js') }}"></script>
+<script src="{{ asset('js/helpers/cart.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_information_products/main_information_product.js') }}"></script>
 
 </html>

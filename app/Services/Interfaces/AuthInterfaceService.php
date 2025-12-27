@@ -7,9 +7,9 @@ use App\Models\TimonShopUser;
 
 interface AuthInterfaceService
 {
-    public function register($data): TimonShopUser;
+    public function register(array $data): TimonShopUser;
 
-    public function login($data): bool;
+    public function login(int $data): bool;
 
     public function logout();
 }

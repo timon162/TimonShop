@@ -1,0 +1,75 @@
+.container-product-home-admin {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.wrap-list-product-home-admin {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.product-home-admin {
+    height: auto;
+    width: 25%;
+    display: flex;
+}
+
+.product-card-home-admin {
+    height: auto;
+    width: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.product-card-home-admin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-home-admin {
+    transition: all 0.5s ease;
+}
+
+.product-card-home-admin:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-card-home-admin a {
+    display: flex;
+    height: fit-content;
+}
+
+.price-home-admin {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.btn-home-admin-custom {
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-home-admin-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+#img-product-home-admin {
+    height: 200px;
+}
+
+.pay-zoneprice-home-admin {
+    gap: 10px;
+}
+
+.change-product-home-admin {
+    gap: 10px;
+}

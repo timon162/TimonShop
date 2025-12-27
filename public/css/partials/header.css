@@ -2,11 +2,11 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .left-header {
-    width: 15%;
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 26%;
+    right: 24%;
     cursor: pointer;
 }
 

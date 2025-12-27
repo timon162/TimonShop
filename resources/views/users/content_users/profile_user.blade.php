@@ -4,28 +4,22 @@
     <div class="wrap-form-profile">
         <div class="avatar-user-zone">
             <div class="avatar-user">
-                @auth
-                    @if (!auth()->user()->image_user)
-                        <img src="https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png"
-                            alt="" id="arvatar">
-                    @endif
-                    <img src="{{ auth()->user()->image_user }}" alt="" id="arvatar">
-                @endauth
+                <img src="{{ $userAvatar }}" alt="" id="arvatar">
             </div>
         </div>
         <div class="infor-user-zone">
             @auth
                 <div class="row-infor">
                     <p class="title-infor">Họ và tên</p>
-                    <p>{{ auth()->user()->name }}</p>
+                    <p>{{ $userProfile->name }}</p>
                 </div>
                 <div class="row-infor">
                     <p class="title-infor">Số điện thoại</p>
-                    <p>{{ auth()->user()->phone_number }}</p>
+                    <p>{{ $userProfile->phone_number }}</p>
                 </div>
                 <div class="row-infor">
                     <p class="title-infor">Gmail</p>
-                    <p>{{ auth()->user()->email }}</p>
+                    <p>{{ $userProfile->email }}</p>
                 </div>
                 <div class="row-infor">
                     <p class="title-infor">Tiền</p>
@@ -42,16 +36,16 @@
             @auth
                 <div class="row-change-infor">
                     <p class="title-change-infor">Họ và tên</p>
-                    <input id="input-name" type="text" placeholder="Họ và tên" value="{{ auth()->user()->name }}">
+                    <input id="input-name" type="text" placeholder="Họ và tên" value="{{ $userProfile->name }}">
                 </div>
                 <div class="row-change-infor">
                     <p class="title-change-infor">Số điện thoại</p>
                     <input id="input-phone-number" type="text" placeholder="Số điện thoại"
-                        value="{{ auth()->user()->phone_number }}">
+                        value="{{ $userProfile->phone_number }}">
                 </div>
                 <div class="row-change-infor">
                     <p class="title-change-infor">Email</p>
-                    <input id="input-email" type="email" placeholder="Email" value="{{ auth()->user()->email }}">
+                    <input id="input-email" type="email" placeholder="Email" value="{{ $userProfile->email }}">
                 </div>
                 <div class="btn-change-infor">
                     <button type="submit">Cập nhật thông tin</button>

@@ -11,7 +11,7 @@ $("#id-Logout-btn").on("click", function (e) {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function () {
-            window.location.href = "/user";
+            window.location.href = "/";
         },
     });
 });

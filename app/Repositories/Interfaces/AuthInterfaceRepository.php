@@ -6,6 +6,6 @@ use App\Models\TimonShopUser;
 
 interface AuthInterfaceRepository
 {
-    public function register($data): TimonShopUser;
-    public function logout($userId);
+    public function register(array $data): TimonShopUser;
+    public function logout(int $userId);
 }
