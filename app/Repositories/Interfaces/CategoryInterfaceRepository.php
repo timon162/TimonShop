@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 interface CategoryInterfaceRepository
 {
-    public function postCategory($data): int;
+    public function postCategory(array $data): bool;
 
     public function getCategory(): Collection;
 }

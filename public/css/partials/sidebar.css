@@ -5,7 +5,6 @@
 
 .sidebar {
     width: var(--sidebar-width);
-    height: 100%;
     background: linear-gradient(135deg, #1a1c2e 0%, #16181f 100%);
     transition: all 0.3s ease;
     position: relative;

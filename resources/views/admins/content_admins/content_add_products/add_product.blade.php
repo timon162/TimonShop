@@ -7,7 +7,7 @@
                     <label for="imageInput" class="custom-file-btn">Chọn ảnh</label>
                     <input type="file" id="imageInput" style="display:none;" name="image">
                 </div>
-                <div class="avatar-product">
+                <div class="avatar-add-product">
                     <button type="button" class="close-avatar" id="close-avatar">X</button>
                     <img id="preview">
                 </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="item-input-product">
                 <label>Mã sản phẩm</label>
-                <input id="input-code-create" class="code-product" type="text" placeholder="nhập Mã sản phẩm">
+                <input id="input-code-create" type="text" placeholder="nhập Mã sản phẩm">
                 <label class="note-error">* mã sản phẩm phải dài hơn 6 số</label>
                 <label class="note-success">* mã sản phẩm hợp lệ</label>
             </div>

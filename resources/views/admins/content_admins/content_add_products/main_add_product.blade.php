@@ -1,9 +1,5 @@
 @extends('admins.layout_master_admin')
 @section('content-admin')
-    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/main_add_product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_category.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_add_products/add_supplier.css') }}">
     <div class="container-add-content">
         <div class="header-add-content">
             <div class="list-title-add-content">
@@ -30,8 +26,4 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/admins/contents/content_add_products/add_category.js') }}"></script>
-    <script src="{{ asset('js/admins/contents/content_add_products/add_supplier.js') }}"></script>
-    <script src="{{ asset('js/admins/contents/content_add_products/add_product.js') }}"></script>
-    <script src="{{ asset('js/admins/contents/content_add_products/main_add_product.js') }}"></script>
 @endsection

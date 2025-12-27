@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -58,6 +60,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            $view->with([
+                'userAvatar' => Auth::check()
+                    ? Auth::user()->avatar
+                    : 'https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png',
+                'userProfile' => Auth::check() ? Auth::user() : null,
+            ]);
+        });
     }
 }

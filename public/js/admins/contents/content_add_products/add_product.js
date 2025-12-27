@@ -56,7 +56,7 @@ $("#imageInput").on("change", function () {
         imgUrl = URL.createObjectURL(file);
 
         $(".main-img-product").css("display", "none");
-        $(".avatar-product").css("display", "flex");
+        $(".avatar-add-product").css("display", "flex");
         $("#preview").attr("src", imgUrl);
     }
 });
@@ -78,7 +78,7 @@ $("#btn-add-img").on("change", function () {
 
 $("#close-avatar").on("click", function () {
     $(".main-img-product").css("display", "flex");
-    $(".avatar-product").css("display", "none");
+    $(".avatar-add-product").css("display", "none");
 
     $("#imageInput").val("");
 });

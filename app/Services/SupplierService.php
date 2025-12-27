@@ -11,7 +11,7 @@ class SupplierService implements SupplierInterfaceService
 
     public function __construct(protected SupplierInterfaceRepository $supplierRepo) {}
 
-    public function postSupplier($data): int
+    public function postSupplier($data): bool
     {
         $response = $this->supplierRepo->postSupplier($data);
         return $response;

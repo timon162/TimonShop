@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class CategoryRepository implements CategoryInterfaceRepository
 {
-    public function postCategory($data): int
+    public function postCategory(array $data): bool
     {
         $category = DB::table('timon_shop_categories')->insert($data);
         return $category;
