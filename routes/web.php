@@ -41,30 +41,30 @@ Route::post('/update-cart', [CartController::class, 'updateCart'])->name('update
 
 
 
-// Route::get('/test-supplier', function () {
-//     $repo = app(\App\Repositories\ProductRepository::class);
-//     $service = app(\App\Services\ProductService::class);
-//     $controller = app(CartController::class);
-//     $data = [
-//         'product_name' => 'điện thoại',
-//         'category_id' => 15,
-//         'supplier_id' => 15,
-//         'product_price' => '20000000',
-//         'product_quantity' => '15',
-//         'product_image' => 'hình điện thoại',
-//         'product_code' => 'điện thoạis',
-//         'product_decription' => 'mô tả',
-//         'created_at' => now(),
-//     ];
-//     $test = [
-//         'product_id' => 25,
-//         'quantity' => 9
-//     ];
-//     $dataRepo = $controller->updateCart($test);
-//     // $dataRepo = $controller->deleteCart(8);
-//     // $data = $dataRepo->map(function ($item) {
-//     //     return $item->supplier?->supplier_name;
-//     // });
+Route::get('/test-supplier', function () {
+    $repo = app(\App\Repositories\OrderRepository::class);
+    $service = app(\App\Services\ProductService::class);
+    $controller = app(CartController::class);
+    $data = [
+        'product_name' => 'điện thoại',
+        'category_id' => 15,
+        'supplier_id' => 15,
+        'product_price' => '20000000',
+        'product_quantity' => '15',
+        'product_image' => 'hình điện thoại',
+        'product_code' => 'điện thoạis',
+        'product_decription' => 'mô tả',
+        'created_at' => now(),
+    ];
+    $test = [
+        'product_id' => 25,
+        'quantity' => 9
+    ];
+    $dataRepo = $repo->getOrder();
+    // $dataRepo = $controller->deleteCart(8);
+    // $data = $dataRepo->map(function ($item) {
+    //     return $item->supplier?->supplier_name;
+    // });
 
-//     return response()->json($dataRepo);
-// });
+    return response()->json($dataRepo);
+});

@@ -152,7 +152,6 @@
             </div>
             <div class="comment-zone">
                 <form class="cmt-zone" data-id="{{ $detailProduct->id }}">
-                    @csrf
                     <input type="text" placeholder="Nhập nội dung bình luận ..." class="input-cmt">
                     <button type="submit">Gửi bình luận</button>
                 </form>

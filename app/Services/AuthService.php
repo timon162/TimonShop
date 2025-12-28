@@ -13,7 +13,7 @@ class AuthService implements AuthInterfaceService
 {
     public function __construct(protected  AuthInterfaceRepository $Authrepo) {}
 
-    public function register($data): TimonShopUser
+    public function register(array $data): TimonShopUser
     {
         $data['password'] = Hash::make($data['password']);
         $response = $this->Authrepo->register($data);
@@ -23,7 +23,7 @@ class AuthService implements AuthInterfaceService
         return $response;
     }
 
-    public function login($data): bool
+    public function login(array $data): bool
     {
         $credentials = [
             'email' => $data['email'],

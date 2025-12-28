@@ -9,24 +9,22 @@
                 </div>
             </div>
             <div class="infor-user-zone">
-                @auth
-                    <div class="row-infor">
-                        <p class="title-infor">Họ và tên</p>
-                        <p>{{ $userProfile->name }}</p>
-                    </div>
-                    <div class="row-infor">
-                        <p class="title-infor">Số điện thoại</p>
-                        <p>{{ $userProfile->phone_number }}</p>
-                    </div>
-                    <div class="row-infor">
-                        <p class="title-infor">Gmail</p>
-                        <p>{{ $userProfile->email }}</p>
-                    </div>
-                    <div class="row-infor">
-                        <p class="title-infor">Tiền</p>
-                        <p>2.000.000</p>
-                    </div>
-                @endauth
+                <div class="row-infor">
+                    <p class="title-infor">Họ và tên</p>
+                    <p>{{ $userProfile->name }}</p>
+                </div>
+                <div class="row-infor">
+                    <p class="title-infor">Số điện thoại</p>
+                    <p>{{ $userProfile->phone_number }}</p>
+                </div>
+                <div class="row-infor">
+                    <p class="title-infor">Gmail</p>
+                    <p>{{ $userProfile->email }}</p>
+                </div>
+                <div class="row-infor">
+                    <p class="title-infor">Tiền</p>
+                    <p>2.000.000</p>
+                </div>
                 <div class="btn-post-zone">
                     <button>Chỉnh sửa thông tin</button>
                 </div>
@@ -34,24 +32,24 @@
             <form class="change-infor-user-zone">
                 <label for="input-avatar-user" class="change-avatar-user">Thay đổi ảnh đại diện</label>
                 <input type="file" id="input-avatar-user" style="display:none;" name="image">
-                @auth
-                    <div class="row-change-infor">
-                        <p class="title-change-infor">Họ và tên</p>
-                        <input id="input-name" type="text" placeholder="Họ và tên" value="{{ $userProfile->name }}">
-                    </div>
-                    <div class="row-change-infor">
-                        <p class="title-change-infor">Số điện thoại</p>
-                        <input id="input-phone-number" type="text" placeholder="Số điện thoại"
-                            value="{{ $userProfile->phone_number }}">
-                    </div>
-                    <div class="row-change-infor">
-                        <p class="title-change-infor">Email</p>
-                        <input id="input-email" type="email" placeholder="Email" value="{{ $userProfile->email }}">
-                    </div>
-                    <div class="btn-change-infor">
-                        <button type="submit">Cập nhật thông tin</button>
-                    </div>
-                @endauth
+
+                <div class="row-change-infor">
+                    <p class="title-change-infor">Họ và tên</p>
+                    <input id="input-name" type="text" placeholder="Họ và tên" value="{{ $userProfile->name }}">
+                </div>
+                <div class="row-change-infor">
+                    <p class="title-change-infor">Số điện thoại</p>
+                    <input id="input-phone-number" type="text" placeholder="Số điện thoại"
+                        value="{{ $userProfile->phone_number }}">
+                </div>
+                <div class="row-change-infor">
+                    <p class="title-change-infor">Email</p>
+                    <input id="input-email" type="email" placeholder="Email" value="{{ $userProfile->email }}">
+                </div>
+                <div class="btn-change-infor">
+                    <button type="submit">Cập nhật thông tin</button>
+                </div>
+
             </form>
         </div>
     </div>

@@ -4,30 +4,27 @@
     <form class="cart-view">
         <div class="content-product-cart-view-zone">
             <div class="list-product-cart-view-zone">
-                @if ($cart)
-                    @foreach ($cart as $item)
-                        <div class="item-product-cart-view" data-id-prduct-cart="{{ $item['product_id'] }}">
-                            <div class="img-product-cart-view">
-                                <img src="{{ $item['product_image'] }}" alt="">
-                            </div>
-                            <div class="name-product-cart-view">
-                                <span>{{ $item['product_name'] }}</span>
-                            </div>
-                            <div class="name-product-cart-view">
-                                <span>{{ $item['product_name'] }}</span>
-                            </div>
-                            <div class="price-product-cart-view">
-                                <span>{{ $item['total_price_product'] }}</span>
-                            </div>
-                            <div class="quantity-product-cart-view">
-                                <button class="minus-quantity-product-cart-view">-</button>
-                                <input class="input-quantity-cart-view" type="number"
-                                    value="{{ $item['product_quantity'] }}">
-                                <button class="plus-quantity-product-cart-view">+</button>
-                            </div>
+                @foreach ($cart as $item)
+                    <div class="item-product-cart-view" data-id-prduct-cart="{{ $item['product_id'] }}">
+                        <div class="img-product-cart-view">
+                            <img src="{{ $item['product_image'] }}" alt="">
                         </div>
-                    @endforeach
-                @endif
+                        <div class="name-product-cart-view">
+                            <span>{{ $item['product_name'] }}</span>
+                        </div>
+                        <div class="name-product-cart-view">
+                            <span>{{ $item['product_name'] }}</span>
+                        </div>
+                        <div class="price-product-cart-view">
+                            <span>{{ $item['total_price_product'] }}</span>
+                        </div>
+                        <div class="quantity-product-cart-view">
+                            <button class="minus-quantity-product-cart-view">-</button>
+                            <input class="input-quantity-cart-view" type="number" value="{{ $item['product_quantity'] }}">
+                            <button class="plus-quantity-product-cart-view">+</button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="pay-zone-cart-view">

@@ -7,27 +7,32 @@
 </div>
 
 <div class="nav flex-column">
-    <a href="{{ route('home.view') }}" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('home.view') }}"
+        class="sidebar-link {{ request()->routeIs('home.view') ? 'active' : '' }} text-decoration-none p-3">
         <i class="fas fa-home me-3"></i>
         <span class="hide-on-collapse">Home</span>
     </a>
 
-    <a href="{{ route('add.product.view') }}" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('add.product.view') }}"
+        class="sidebar-link {{ request()->routeIs('add.product.view') ? 'active' : '' }}  text-decoration-none p-3">
         <i class="fa fa-cart-plus me-3"></i>
         <span class="hide-on-collapse">Add product</span>
     </a>
 
-    <a href="{{ route('information.product.view') }}" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('information.product.view') }}"
+        class="sidebar-link {{ request()->routeIs('information.product.view') ? 'active' : '' }} text-decoration-none p-3">
         <i class="fa fa-list-alt me-3"></i>
         <span class="hide-on-collapse">Information product</span>
     </a>
 
-    <a href="{{ route('cart.view') }}" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('cart.view') }}"
+        class="sidebar-link {{ request()->routeIs('cart.view') ? 'active' : '' }} text-decoration-none p-3">
         <i class='fa fa-shopping-cart me-3'></i>
         <span class="hide-on-collapse">Cart</span>
     </a>
 
-    <a href="{{ route('profile.admin.view') }}" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('profile.admin.view') }}"
+        class="sidebar-link {{ request()->routeIs('profile.admin.view') ? 'active' : '' }} text-decoration-none p-3">
         <i class="fa fa-address-card me-3"></i>
         <span class="hide-on-collapse">Profile</span>
     </a>
