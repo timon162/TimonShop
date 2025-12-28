@@ -9,7 +9,7 @@ interface AuthInterfaceService
 {
     public function register(array $data): TimonShopUser;
 
-    public function login(int $data): bool;
+    public function login(array $data): bool;
 
     public function logout();
 }

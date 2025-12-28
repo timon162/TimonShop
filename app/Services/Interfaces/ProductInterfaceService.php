@@ -17,7 +17,7 @@ interface ProductInterfaceService
 
     public function getImageDescriptionById(int $id): Collection;
 
-    public function addToCart(int $id, array $cartSession): array;
+    public function addToCart(int $id): array;
 
     public function updateCart(array $request): array;
 

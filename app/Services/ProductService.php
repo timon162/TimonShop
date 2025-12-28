@@ -47,8 +47,9 @@ class ProductService implements ProductInterfaceService
         return $product;
     }
 
-    public function addToCart(int $id, array $cartSession): array
+    public function addToCart(int $id): array
     {
+        $cartSession = session('cart', []);
         $product = $this->repoProduct->getProductById($id);
         if (isset($cartSession[$id])) {
             $totalQuantity = $cartSession[$id]['product_quantity'] += 1;

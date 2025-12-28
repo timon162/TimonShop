@@ -23,10 +23,9 @@ class CartController extends Controller
 
     public function addToCart(ProductIdRequest $id)
     {
-        $cartSession = session('cart', []);
         $productId = $id->validated()['product_id'];
 
-        $cart = $this->productService->addToCart($productId, $cartSession);
+        $cart = $this->productService->addToCart($productId);
 
         if (!$cart) {
             return response()->json(['mess' => 'Chưa thêm dc vào giỏ hàng!']);

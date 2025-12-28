@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class SupplierRepository implements SupplierInterfaceRepository
 {
-    public function postSupplier($data): bool
+    public function postSupplier(array $data): bool
     {
         $supplier = DB::table('timon_shop_suppliers')->insert($data);
         return $supplier;

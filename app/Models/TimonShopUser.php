@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TimonShopOrders;
 
 class TimonShopUser extends Authenticatable
 {
@@ -24,5 +25,10 @@ class TimonShopUser extends Authenticatable
     {
         return $this->image_user
             ?: 'https://cdn-icons-png.flaticon.com/256/3293/3293466.png';
+    }
+
+    public function order()
+    {
+        return $this->hasMany(TimonShopOrders::class, 'user_id');
     }
 }
