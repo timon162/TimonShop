@@ -11,7 +11,7 @@ class CartService implements CartInterfaceService
 {
     public function __construct(protected ProductInterfaceRepository $repoProduct) {}
 
-    public function getTotalPriceCart(array $cartSession): CartResult
+    public function setTotalCart(array $cartSession): CartResult
     {
         $priceTotalCart = 0;
 
@@ -25,8 +25,15 @@ class CartService implements CartInterfaceService
         );
     }
 
-    public function addToCart(int $id, array $cartSession): CartResult
+    public function getTotalPriceCart(): CartResult
     {
+        $cartSession = session('cart', []);
+        return $this->setTotalCart($cartSession);
+    }
+
+    public function addToCart(int $id): void
+    {
+        $cartSession = session('cart', []);
         $product = $this->repoProduct->getProductById($id);
 
         if (!$product) {
@@ -48,27 +55,24 @@ class CartService implements CartInterfaceService
                 'total_price_product'   => $product->product_price,
             ];
         }
-
-        return $this->getTotalPriceCart($cartSession);
+        session(['cart' => $cartSession]);
     }
 
-    public function updateCart(array $idAndQuantityProduct): CartResult
+    public function updateCart(array $idAndQuantityProduct): void
     {
-        $cart = session('cart', []);
+        $cartSession = session('cart', []);
         $productId = $idAndQuantityProduct['product_id'];
 
-        if (!isset($cart[$productId])) {
+        if (!isset($cartSession[$productId])) {
             throw new ProductException();
         }
-        $cart[$productId]['product_quantity'] = $idAndQuantityProduct['quantity'];
-        $cart[$productId]['total_price_product'] = $cart[$productId]['product_price'] * $idAndQuantityProduct['quantity'];
+        $cartSession[$productId]['product_quantity'] = $idAndQuantityProduct['quantity'];
+        $cartSession[$productId]['total_price_product'] = $cartSession[$productId]['product_price'] * $idAndQuantityProduct['quantity'];
 
         if ($idAndQuantityProduct['quantity'] <= 0) {
-            unset($cart[$productId]);
+            unset($cartSession[$productId]);
         }
 
-        session(['cart' => $cart]);
-
-        return $this->getTotalPriceCart($cart);
+        session(['cart' => $cartSession]);
     }
 }

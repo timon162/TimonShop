@@ -7,6 +7,8 @@ use App\Repositories\Interfaces\AuthInterfaceRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\TimonShopUser;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class AuthService implements AuthInterfaceService
@@ -18,19 +20,24 @@ class AuthService implements AuthInterfaceService
         $data['password'] = Hash::make($data['password']);
         $response = $this->Authrepo->register($data);
         if (!$response) {
-            throw new \Exception('REGISTER_FAILED');
+            throw new AuthenticationException();
         }
         return $response;
     }
 
-    public function login(array $data): bool
+    public function login(array $data): TimonShopUser
     {
         $credentials = [
             'email' => $data['email'],
             'password' => $data['password']
         ];
 
-        return Auth::attempt($credentials, $data['remember']);
+        $remember = $data['remember'] ?? false;
+
+        if (!Auth::attempt($credentials, $remember)) {
+            throw new AuthenticationException();
+        }
+        return Auth::user();
     }
 
     public function logout()

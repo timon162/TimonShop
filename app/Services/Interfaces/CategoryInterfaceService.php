@@ -7,7 +7,7 @@ use App\Results\BooleanResult;
 
 interface CategoryInterfaceService
 {
-    public function postCategory(array $data);
+    public function postCategory(array $data): void;
 
     public function getCategory(): Collection;
 }
