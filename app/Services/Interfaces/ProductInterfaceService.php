@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 interface ProductInterfaceService
 {
-    public function postProduct(array $data, array $urlImgDecriptions): TimonShopProduct;
+    public function postProduct(array $data): TimonShopProduct;
 
     public function getProduct(): Collection;
 

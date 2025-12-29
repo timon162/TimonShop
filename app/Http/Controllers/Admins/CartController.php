@@ -18,8 +18,7 @@ class CartController extends Controller
 
     public function viewCart()
     {
-        $cartSession = session('cart', []);
-        $cartResult = $this->carttService->getTotalPriceCart($cartSession);
+        $cartResult = $this->carttService->getTotalPriceCart();
 
         return view('admins.content_admins.content_carts.cart_view', [
             'cart' => $cartResult->cartSession,
@@ -29,15 +28,11 @@ class CartController extends Controller
 
     public function addToCart(ProductIdRequest $id): JsonResponse
     {
+        $product_id = $id->validated()['product_id'];
+
         try {
-            $cart = session('cart', []);
 
-            $product_id = $id->validated()['product_id'];
-
-            $result = $this->carttService->addToCart($product_id, $cart);
-
-            session(['cart' => $result->cartSession]);
-
+            $this->carttService->addToCart($product_id);
 
             return response()->json(['success' => 'Add to cart'], 201);
         } catch (ProductException $error) {
@@ -50,7 +45,7 @@ class CartController extends Controller
         try {
             $this->carttService->updateCart($idAndQuantityProduct->validated());
 
-            return response()->json(['success' => 'Add to cart'], 201);
+            return response()->json(['success' => 'update cart'], 201);
         } catch (ProductException $error) {
             return response()->json(['error' => $error->getMessage()], 404);
         }

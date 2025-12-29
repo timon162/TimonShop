@@ -47,23 +47,9 @@ class ProductController extends Controller
     public function postCategory(CategoryRequest $request)
     {
         $validated = $request->validated();
-        $requestData = [];
-
-        foreach ($validated['item_category'] as $items) {
-            $urlCaterogy = null;
-            $path = $items['file_img']->store('category', 'public');
-            $urlCaterogy = asset('storage/' . $path);
-
-            $requestData[] = [
-                'category_name'   => $items['name'],
-                'category_is_hot' => $items['check_hot'],
-                'category_image'  => $urlCaterogy,
-                'created_at'      => now(),
-            ];
-        }
         try {
 
-            $this->categoryService->postCategory($requestData);
+            $this->categoryService->postCategory($validated);
 
             return response()->json(['success' => 'Thêm thành công'], 201);
         } catch (CategoryException $error) {
@@ -74,23 +60,9 @@ class ProductController extends Controller
     public function postSupplier(SupplierRequest $request)
     {
         $validated = $request->validated();
-        $requestData = [];
-
-        foreach ($validated['item_supplier'] as $items) {
-            $urlCaterogy = null;
-            $path = $items['file_img']->store('supplier', 'public');
-            $urlCaterogy = asset('storage/' . $path);
-
-            $requestData[] = [
-                'supplier_name'   => $items['name'],
-                'supplier_is_hot' => $items['check_hot'],
-                'supplier_image'  => $urlCaterogy,
-                'created_at'      => now(),
-            ];
-        }
 
         try {
-            $this->supplierService->postSupplier($requestData);
+            $this->supplierService->postSupplier($validated);
             return response()->json(['success' => 'Thêm thành công'], 201);
         } catch (SupplierException $error) {
             return response()->json(['error' => $error->getMessage()], 404);
@@ -100,36 +72,9 @@ class ProductController extends Controller
     public function postProduct(CreateProductRequest $request)
     {
         $validated = $request->validated();
-        $urlImgDecriptions = [];
-
-        foreach ($validated['imgDescription'] as $items) {
-            $path = $items->store('img_decription_product', 'public');
-            $urlImg = asset('storage/' . $path);
-            $urlImgDecriptions[] = $urlImg;
-        }
-
-        if ($validated['file_main_img_product']) {
-            $path = $validated['file_main_img_product']->store('supplier', 'public');
-            $urlCaterogy = asset('storage/' . $path);
-        }
-
-        $postData = [
-            'product_name' => $validated['name_create_product'],
-            'category_id' => $validated['category_select'],
-            'supplier_id' => $validated['supplier_select'],
-            'product_price' => $validated['price_create_product'],
-            'product_quantity' => $validated['quantity_create_product'],
-            'product_image' => $urlCaterogy,
-            'product_code' => $validated['code_create_product'],
-            'product_decription' => $validated['decription_create_product'],
-            'basicOption' => $validated['basicOptions'],
-            'buyOption' => $validated['buyOptions'],
-            'created_at' => now(),
-        ];
-
 
         try {
-            $product = $this->productService->postProduct($postData, $urlImgDecriptions);
+            $product = $this->productService->postProduct($validated);
             return response()->json(['mess' => 'Thêm thành công', 'nameProduct' => $product['product_name']], 201);
         } catch (ProductException $error) {
             return response()->json($error->getMessage(), 401);

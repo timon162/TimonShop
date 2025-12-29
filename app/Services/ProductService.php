@@ -12,9 +12,37 @@ class ProductService implements ProductInterfaceService
 {
     public function __construct(protected ProductInterfaceRepository $repoProduct) {}
 
-    public function postProduct(array $data, array $urlImgDecriptions): TimonShopProduct
+    public function postProduct(array $data): TimonShopProduct
     {
-        $product = $this->repoProduct->postProduct($data, $urlImgDecriptions);
+        $urlImgDecriptions = [];
+
+        foreach ($data['imgDescription'] as $items) {
+            $path = $items->store('img_decription_product', 'public');
+            $urlImg = asset('storage/' . $path);
+            $urlImgDecriptions[] = $urlImg;
+        }
+
+        if ($data['file_main_img_product']) {
+            $path = $data['file_main_img_product']->store('supplier', 'public');
+            $urlCaterogy = asset('storage/' . $path);
+        }
+
+        $postData = [
+            'product_name' => $data['name_create_product'],
+            'category_id' => $data['category_select'],
+            'supplier_id' => $data['supplier_select'],
+            'product_price' => $data['price_create_product'],
+            'product_quantity' => $data['quantity_create_product'],
+            'product_image' => $urlCaterogy,
+            'product_code' => $data['code_create_product'],
+            'product_decription' => $data['decription_create_product'],
+            'basicOption' => $data['basicOptions'],
+            'buyOption' => $data['buyOptions'],
+            'created_at' => now(),
+        ];
+
+        $product = $this->repoProduct->postProduct($postData, $urlImgDecriptions);
+
         if (!$product) {
             throw new ProductException();
         }
