@@ -4,51 +4,60 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCartRequest;
-use Illuminate\Http\Request;
-use App\Services\Interfaces\ProductInterfaceService;
+use App\Services\Interfaces\CartInterfaceService;
 use App\Http\Requests\ProductIdRequest;
-
+use Illuminate\Http\JsonResponse;
+use App\Exceptions\ProductException;
+use App\Results\CartResult;
 
 class CartController extends Controller
 {
     public function __construct(
-        protected ProductInterfaceService $productService,
+        protected CartInterfaceService $carttService,
     ) {}
 
     public function viewCart()
     {
-        $priceBill = $this->productService->getBill();
-        return view('admins.content_admins.content_carts.cart_view', ['cart' => session('cart', []), 'priceBill' => $priceBill]);
+        $cartSession = session('cart', []);
+        $cartResult = $this->carttService->getTotalPriceCart($cartSession);
+
+        return view('admins.content_admins.content_carts.cart_view', [
+            'cart' => $cartResult->cartSession,
+            'totalCart' => $cartResult->totalCart,
+        ]);
     }
 
-    public function addToCart(ProductIdRequest $id)
+    public function addToCart(ProductIdRequest $id): JsonResponse
     {
-        $productId = $id->validated()['product_id'];
+        try {
+            $cart = session('cart', []);
 
-        $cart = $this->productService->addToCart($productId);
+            $product_id = $id->validated()['product_id'];
 
-        if (!$cart) {
-            return response()->json(['mess' => 'Chưa thêm dc vào giỏ hàng!']);
+            $result = $this->carttService->addToCart($product_id, $cart);
+
+            session(['cart' => $result->cartSession]);
+
+
+            return response()->json(['success' => 'Add to cart'], 201);
+        } catch (ProductException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
         }
-        session(['cart' => $cart]);
-
-        return response()->json(['mess' => 'Đã thêm vào giỏ hàng!']);
     }
 
-    public function updateCart(ProductCartRequest $request)
+    public function updateCart(ProductCartRequest $idAndQuantityProduct): JsonResponse
     {
+        try {
+            $this->carttService->updateCart($idAndQuantityProduct->validated());
 
-        $response = $this->productService->updateCart($request->validated());
-        return $response;
+            return response()->json(['success' => 'Add to cart'], 201);
+        } catch (ProductException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
+        }
     }
 
     public function deleteCart()
     {
-        // $cart = session('cart', []);
-
-        // unset($cart[$id]);
-
-        // session(['cart' => $cart]);
         session()->forget('cart');
     }
 }

@@ -17,14 +17,9 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Interfaces\AuthInterfaceService::class,
             \App\Services\AuthService::class,
         );
-
         $this->app->bind(
             \App\Repositories\Interfaces\AuthInterfaceRepository::class,
             \App\Repositories\AuthRepository::class,
-        );
-        $this->app->bind(
-            \App\Services\Interfaces\UserInterfaceService::class,
-            \App\Services\UserService::class,
         );
 
         $this->app->bind(
@@ -52,6 +47,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Services\Interfaces\ProductInterfaceService::class,
             \App\Services\ProductService::class
+        );
+
+        $this->app->bind(
+            \App\Services\Interfaces\CartInterfaceService::class,
+            \App\Services\CartService::class
         );
     }
 

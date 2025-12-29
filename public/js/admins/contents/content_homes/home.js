@@ -15,19 +15,16 @@ $(".btn-add-home-admin").on("click", function (e) {
         success: function (res) {
             Swal.fire({
                 title: "Timon Shop",
-                text: res.mess,
+                text: res.success,
                 icon: "success",
             });
         },
         error: function (errors) {
-            let error = errors.responseJSON.errors;
-            for (let filed in error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: error[filed][0],
-                });
-            }
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: errors,
+            });
         },
     });
 });

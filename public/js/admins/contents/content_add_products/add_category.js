@@ -80,7 +80,7 @@ $("#id-form-container-infor-category").on("submit", function (e) {
         success: function (res) {
             Swal.fire({
                 title: "Timon Shop",
-                text: res.mess,
+                text: res.success,
                 icon: "success",
             });
         },

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Exceptions\CategoryException;
+use App\Exceptions\ProductException;
+use App\Exceptions\SupplierException;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\SupplierRequest;
@@ -58,12 +61,14 @@ class ProductController extends Controller
                 'created_at'      => now(),
             ];
         }
+        try {
 
-        $responseCategory = $this->categoryService->postCategory($requestData);
-        if (!$responseCategory) {
-            return ['mess' => 'có vấn đề ở repo'];
+            $this->categoryService->postCategory($requestData);
+
+            return response()->json(['success' => 'Thêm thành công'], 201);
+        } catch (CategoryException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
         }
-        return ['mess' => 'Thêm thành công'];
     }
 
     public function postSupplier(SupplierRequest $request)
@@ -84,11 +89,12 @@ class ProductController extends Controller
             ];
         }
 
-        $responseSupplier = $this->supplierService->postSupplier($requestData);
-        if (!$responseSupplier) {
-            return ['mess' => 'có vấn đề ở repo'];
+        try {
+            $this->supplierService->postSupplier($requestData);
+            return response()->json(['success' => 'Thêm thành công'], 201);
+        } catch (SupplierException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
         }
-        return ['mess' => 'Thêm thành công'];
     }
 
     public function postProduct(CreateProductRequest $request)
@@ -121,13 +127,13 @@ class ProductController extends Controller
             'created_at' => now(),
         ];
 
-        $product = $this->productService->postProduct($postData, $urlImgDecriptions);
 
-        if (!$product) {
-            return ['mess' => 'Thất bại'];
+        try {
+            $product = $this->productService->postProduct($postData, $urlImgDecriptions);
+            return response()->json(['mess' => 'Thêm thành công', 'nameProduct' => $product['product_name']], 201);
+        } catch (ProductException $error) {
+            return response()->json($error->getMessage(), 401);
         }
-
-        return ['mess' => 'Thêm thành công', 'nameProduct' => $product['product_name']];
     }
 
     public function viewDetailProduct(int $id)
