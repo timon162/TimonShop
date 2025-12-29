@@ -60,7 +60,7 @@ Route::get('/test-supplier', function () {
         'product_id' => 25,
         'quantity' => 9
     ];
-    $dataRepo = $repo->getOrder();
+    $dataRepo = $controller->deleteCart();
     // $dataRepo = $controller->deleteCart(8);
     // $data = $dataRepo->map(function ($item) {
     //     return $item->supplier?->supplier_name;

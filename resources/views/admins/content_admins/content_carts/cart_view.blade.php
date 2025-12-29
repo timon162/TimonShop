@@ -32,7 +32,7 @@
                 <span>Thông tin thanh toán</span>
                 <div class="total-pay-cart-view">
                     <span>Tổng tiền</span>
-                    <p>{{ $priceBill }}</p>
+                    <p>{{ $totalCart }}</p>
                 </div>
             </div>
             <div class="content-pay-cart-view">
