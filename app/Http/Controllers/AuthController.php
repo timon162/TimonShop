@@ -30,11 +30,13 @@ class AuthController extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('admin');
-        } catch (AuthenticationException $e) {
+            return response()->json([
+                'mess' => 'Đăng ký thành công'
+            ]);
+        } catch (\Throwable $e) {
             return response()->json([
                 'mess' => 'Đăng ký thất bại'
-            ], 401);
+            ]);
         }
     }
 
@@ -42,7 +44,7 @@ class AuthController extends Controller
     {
 
         try {
-            $this->authService->login($request->validated());
+            $this->Authservice->login($request->validated());
 
             return response()->json([
                 'mess' => 'Login success'

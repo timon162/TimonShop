@@ -118,3 +118,90 @@
     display: flex;
     text-decoration: none;
 }
+
+.button-edit-category-zone {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.button-edit-category-zone a {
+    height: 60px;
+    width: 90px;
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: gray;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img-edit-category-zone {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.custom-file-edit-category-btn {
+    height: 100px;
+    width: 150px;
+}
+
+.custom-file-edit-category-btn img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.close-old-file-edit-category {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.img-edit-new-category-zone {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.close-img-file-edit-category {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.img-file-edit-category {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-file-edit-category img {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-image-category-eidt {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

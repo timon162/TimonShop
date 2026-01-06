@@ -46,9 +46,9 @@
             <div class="item-input-product">
                 <select class="category-select">
                     <option value="">-- Chọn loại sản phẩm --</option>
-                    @foreach ($dataCategory as $item)
-                        <option value="{{ $item->id }}">
-                            {{ $item->category_name }}
+                    @foreach ($dataCategory['category'] as $item)
+                        <option value="{{ $item['categoryId'] }}">
+                            {{ $item['categoryName'] }}
                         </option>
                     @endforeach
                 </select>
@@ -56,9 +56,9 @@
             <div class="item-input-product">
                 <select class="supplier-select">
                     <option value="">-- Chọn thương hiệu --</option>
-                    @foreach ($dataSupplier as $item)
-                        <option value="{{ $item->id }}">
-                            {{ $item->supplier_name }}
+                    @foreach ($dataSupplier['supplier'] as $item)
+                        <option value="{{ $item['supplierId'] }}">
+                            {{ $item['supplierName'] }}
                         </option>
                     @endforeach
                 </select>

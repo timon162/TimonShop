@@ -32,3 +32,31 @@ $(".plus-quantity-product-cart-view").on("click", function (e) {
     e.preventDefault();
     numberQuatity(1, $(this));
 });
+
+$("#id-btn-pay").on("click", function (e) {
+    e.preventDefault();
+    // console.log('click')
+    $.ajax({
+        type: "POST",
+        url: "/post-bill",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (res) {
+            Swal.fire({
+                title: "Timon Shop",
+                text: res.success,
+                icon: "success",
+            }).then(() => {
+                location.reload();
+            });
+        },
+        error: function (errors) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: errors.responseJSON?.error ?? "Có lỗi xảy ra",
+            });
+        },
+    });
+});

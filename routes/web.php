@@ -30,6 +30,7 @@ Route::prefix('/admin')->middleware('checkRole')->group(function () {
     Route::get('/information-product', [ProductController::class, 'viewInformationProduct'])->name('information.product.view');
     Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
     Route::get('/detail-product/{id}', [ProductController::class, 'viewDetailProduct'])->name('detail.view');
+    Route::get('/update-product/{product_id}', [ProductController::class, 'viewUpdateProduct'])->name('update.product.view');
 });
 
 Route::post('/post-profile', [UserController::class, 'updateProfileUser'])->name('post.profile');
@@ -38,30 +39,35 @@ Route::post('/post-supplier', [ProductController::class, 'postSupplier'])->name(
 Route::post('/post-product', [ProductController::class, 'postProduct'])->name('post.product');
 Route::post('/post-cart', [CartController::class, 'addToCart'])->name('add.cart');
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');
-
-
+Route::post('/post-bill', [CartController::class, 'createBill'])->name('create.bill');
+Route::delete('/delete-supplier', [ProductController::class, 'deleteSupplier'])->name('delete.supplier');
+Route::post('/update-supplier', [ProductController::class, 'updateSupplier'])->name('update.supplier');
+Route::delete('/delete-category', [ProductController::class, 'deleteCategory'])->name('delete.category');
+Route::post('/update-category', [ProductController::class, 'updateCategory'])->name('update.category');
 
 Route::get('/test-supplier', function () {
-    $repo = app(\App\Repositories\OrderRepository::class);
-    $service = app(\App\Services\ProductService::class);
-    $controller = app(CartController::class);
+    $repo = app(\App\Repositories\ProductRepository::class);
+    $service = app(\App\Services\CategoryService::class);
+    $controller = app(ProductController::class);
+    $dataSessionCart = [];
+
+    foreach (session('cart', []) as $items) {
+        $dataSessionCart[] = [
+            'product_id' => $items['product_id'],
+            'buy_option_id' => 5,
+            'bill_quantity' =>  $items['product_quantity'],
+            'bill_price' => $items['total_price_product'],
+            'created_at' => now(),
+        ];
+    }
+
     $data = [
-        'product_name' => 'điện thoại',
-        'category_id' => 15,
-        'supplier_id' => 15,
-        'product_price' => '20000000',
-        'product_quantity' => '15',
-        'product_image' => 'hình điện thoại',
-        'product_code' => 'điện thoạis',
-        'product_decription' => 'mô tả',
-        'created_at' => now(),
+        'category_id' => 14,
+
+        'category_name' => 'Samssung',
     ];
-    $test = [
-        'product_id' => 25,
-        'quantity' => 9
-    ];
-    $dataRepo = $controller->deleteCart();
-    // $dataRepo = $controller->deleteCart(8);
+    $dataRepo = $repo->deleteProduct(25);
+    // $dataRepo = $controller->deleteCart();
     // $data = $dataRepo->map(function ($item) {
     //     return $item->supplier?->supplier_name;
     // });

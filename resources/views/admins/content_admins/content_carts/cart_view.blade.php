@@ -13,7 +13,7 @@
                             <span>{{ $item['product_name'] }}</span>
                         </div>
                         <div class="name-product-cart-view">
-                            <span>{{ $item['product_name'] }}</span>
+                            <span>{{ $item['product_supplier'] }}</span>
                         </div>
                         <div class="price-product-cart-view">
                             <span>{{ $item['total_price_product'] }}</span>
@@ -60,7 +60,7 @@
                     <span>Tổng cần thanh toán</span>
                     <p>giá tiền</p>
                 </div>
-                <button class="btn-pay-cart-view" type="submit">Xác nhận thanh toán</button>
+                <button class="btn-pay-cart-view" id="id-btn-pay" type="submit">Xác nhận thanh toán</button>
             </div>
         </div>
     </form>

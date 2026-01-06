@@ -3,6 +3,7 @@
 namespace App\Services\Interfaces;
 
 use App\Results\CartResult;
+use App\Models\TimonShopBills;
 
 interface CartInterfaceService
 {
@@ -11,4 +12,6 @@ interface CartInterfaceService
     public function addToCart(int $id): void;
 
     public function updateCart(array $idAndQuantityProduct): void;
+
+    public function postBill(): TimonShopBills;
 }

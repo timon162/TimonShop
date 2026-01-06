@@ -4,8 +4,10 @@ namespace App\Results;
 
 class CartResult
 {
-    public function __construct(
-        public array $cartSession,
-        public int $totalCart
-    ) {}
+    public array $data;
+
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+    }
 }

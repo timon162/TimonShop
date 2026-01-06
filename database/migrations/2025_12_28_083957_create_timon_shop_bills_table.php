@@ -11,19 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('timon_shop_orders', function (Blueprint $table) {
+        Schema::create('timon_shop_bills', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('buy_option_id');
-            $table->unsignedInteger('order_quantity');
-            $table->decimal('order_price', 16, 0);
-
+            $table->decimal('total_price_bill', 16, 0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('timon_shop_users')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('timon_shop_products')->onDelete('cascade');
-            $table->foreign('buy_option_id')->references('id')->on('timon_shop_buy_option_products')->onDelete('cascade');
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('timon_shop_orders');
+        Schema::dropIfExists('timon_shop_bills');
     }
 };

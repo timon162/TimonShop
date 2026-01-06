@@ -3,24 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\TimonShopUser;
+use App\Models\TimonShopBills;
 use App\Models\TimonShopBuyOptionProduct;
 use App\Models\TimonShopProduct;
 
-class TimonShopOrders extends Model
+class TimonShopDetailBills extends Model
 {
     protected $fillable = [
-        'user_id',
+        'bill_id',
         'product_id',
         'buy_option_id ',
-        'order_quantity',
-        'order_price',
+        'bill_quantity',
+        'bill_price',
         'created_at',
     ];
 
-    public function user()
+    public function bill()
     {
-        return $this->belongsTo(TimonShopUser::class, 'user_id');
+        return $this->belongsTo(TimonShopBills::class, 'bill_id');
     }
 
     public function product()

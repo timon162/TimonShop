@@ -16,8 +16,6 @@ class AuthRepository implements AuthInterfaceRepository
 
     public function logout(int $userId)
     {
-        if ($userId) {
-            TimonShopUser::where('id', $userId)->update(['remember_token' => null]);
-        }
+        TimonShopUser::where('id', $userId)->update(['remember_token' => null]);
     }
 }

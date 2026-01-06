@@ -34,29 +34,31 @@
                 <th>Tùy chỉnh sản phẩm</th>
             </tr>
             <tbody class="detail-items">
-                @foreach ($dataProduct as $key => $item)
+                @foreach ($dataProduct['product'] as $key => $item)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $item->product_name }}</td>
+                        <td>{{ $item['productName'] }}</td>
                         <td>
                             <div class="img-infor-product-zone">
-                                <img src="{{ $item->product_image }}"class="img-infor-product">
+                                <img src="{{ $item['productImage'] }}"class="img-infor-product">
                             </div>
                         </td>
-                        <td>{{ $item->product_code }}</td>
-                        <td>{{ $item->product_price }}</td>
-                        <td>{{ $item->category->category_name }}</td>
-                        <td>{{ $item->product_quantity }}</td>
-                        <td>{{ $item->supplier->supplier_name }}</td>
+                        <td>{{ $item['productCode'] }}</td>
+                        <td>{{ $item['productPrice'] }}</td>
+                        <td>{{ $item['categoryName'] }}</td>
+                        <td>{{ $item['productQuantity'] }}</td>
+                        <td>{{ $item['supplierName'] }}</td>
                         <td>
                             <div class="button-infor-product-zone">
-                                <a class="show-detail-product" data-id="{{ $item->id }}" href="">
+                                <a class="show-detail-product" data-id="{{ $item['productId'] }}"
+                                    href="{{ route('detail.view', ['id' => $item['productId']]) }}">
                                     Xem chi tiết
                                 </a>
-                                <a class="update-detail-product" data-id="{{ $item->id }}">
+                                <a class="update-detail-product"
+                                    href="{{ route('update.product.view', ['product_id' => $item['productId']]) }}">
                                     Cập nhật
                                 </a>
-                                <a class="delete-detail-product" data-id="{{ $item->id }}">
+                                <a class="delete-detail-product" data-id="{{ $item['productId'] }}">
                                     Xóa
                                 </a>
                             </div>
@@ -67,11 +69,9 @@
         </table>
         <div class="list-count-product">
             <ul class="detail-list-count-product">
-
                 <li>
                     <a class="item-page" href="#">1</a>
                 </li>
-
             </ul>
         </div>
     </div>

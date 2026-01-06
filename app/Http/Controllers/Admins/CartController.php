@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Exceptions\BillException;
+use App\Exceptions\NullException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCartRequest;
 use App\Services\Interfaces\CartInterfaceService;
@@ -18,12 +20,9 @@ class CartController extends Controller
 
     public function viewCart()
     {
-        $cartResult = $this->carttService->getTotalPriceCart();
+        $cartViewResult = $this->carttService->getTotalPriceCart()->data;
 
-        return view('admins.content_admins.content_carts.cart_view', [
-            'cart' => $cartResult->cartSession,
-            'totalCart' => $cartResult->totalCart,
-        ]);
+        return view('admins.content_admins.content_carts.cart_view', $cartViewResult);
     }
 
     public function addToCart(ProductIdRequest $id): JsonResponse
@@ -31,9 +30,7 @@ class CartController extends Controller
         $product_id = $id->validated()['product_id'];
 
         try {
-
             $this->carttService->addToCart($product_id);
-
             return response()->json(['success' => 'Add to cart'], 201);
         } catch (ProductException $error) {
             return response()->json(['error' => $error->getMessage()], 404);
@@ -44,9 +41,18 @@ class CartController extends Controller
     {
         try {
             $this->carttService->updateCart($idAndQuantityProduct->validated());
-
             return response()->json(['success' => 'update cart'], 201);
         } catch (ProductException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
+        }
+    }
+
+    public function createBill()
+    {
+        try {
+            $this->carttService->postBill();
+            return response()->json(['success' => 'thanh toán thành công'], 201);
+        } catch (BillException | NullException  $error) {
             return response()->json(['error' => $error->getMessage()], 404);
         }
     }

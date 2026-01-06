@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ asset('css/admins/contents/content_homes/home_view.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admins/contents/content_detail_products/detail_product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admins/contents/content_profiles/profile_admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admins/contents/content_update_products/update_product.css') }}">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>admin View</title>
@@ -65,6 +66,7 @@
 <script src="{{ asset('js/admins/contents/content_add_products/main_add_product.js') }}"></script>
 <script src="{{ asset('js/admins/contents/content_homes/home.js') }}"></script>
 <script src="{{ asset('js/admins/contents/content_detail_products/detail_product.js') }}"></script>
+<script src="{{ asset('js/admins/contents/content_update_products/update_product.js') }}"></script>
 <script src="{{ asset('js/admins/profile_admin.js') }}"></script>
 <script src="{{ asset('js/helpers/cart.js') }}"></script>
 <script src="{{ asset('js/admins/contents/content_information_products/main_information_product.js') }}"></script>

@@ -11,7 +11,7 @@
                                 id="id-btn-move-left-information-product">&#10094</button>
                             <div class="avatar-product">
                                 <div class="list-avatar-product">
-                                    <img src="{{ $detailProduct->product_image }}">
+                                    <img src="{{ $detailProduct['productImage'] }}">
                                 </div>
                             </div>
                             <button class="btn-move-right-information-product"
@@ -21,9 +21,9 @@
                             <button class="btn-move-left-list-information-image-product"
                                 id="id-btn-move-left-list-information-image-product">&#10094</button>
                             <div class="list-option-image">
-                                @foreach ($imageDescription as $item)
+                                @foreach ($detailProduct['imageDescription'] as $item)
                                     <div class="option-image">
-                                        <img src="{{ $item->image_url }}" alt="">
+                                        <img src="{{ $item['imageUrl'] }}" alt="">
                                     </div>
                                 @endforeach
                             </div>
@@ -38,11 +38,11 @@
                                 </span>
                             </div>
                             <div class="detail-outstanding-information">
-                                @foreach ($showOption as $item)
+                                @foreach ($detailProduct['showOption'] as $item)
                                     <div class="wrap-detail-outstanding-information-1">
-                                        <p>{{ $item->basic_option_name }}</p>
+                                        <p>{{ $item['basicOptionName'] }}</p>
                                         <div class="image-outstanding-information">
-                                            <p>{{ $item->basic_option_description }}</p>
+                                            <p>{{ $item['basicOptionDescription'] }}</p>
                                         </div>
                                     </div>
                                 @endforeach
@@ -57,22 +57,22 @@
                                 alt="">
                         </div>
                         <div class="name-product">
-                            <p>{{ $detailProduct->product_name }}</p>
+                            <p>{{ $detailProduct['productName'] }}</p>
                         </div>
                         <div class="more-information">
                             <div class="code-product">
-                                <span>No.{{ $detailProduct->product_code }}</span>
+                                <span>No.{{ $detailProduct['productCode'] }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="option-product">
-                        @foreach ($nameBuyOption as $buyOptionName => $items)
+                        @foreach ($detailProduct['nameBuyOption'] as $name => $items)
                             <div class="wrap-option">
-                                <span class="type-option">{{ $buyOptionName }}</span>
+                                <span class="type-option">{{ $name }}</span>
                                 <div class="list-option">
                                     @foreach ($items as $option)
                                         <a class="btn-option text-decoration-none text-dark" href="">
-                                            {{ $option->buy_option_description }}
+                                            {{ $option['buyOptionDescription'] }}
                                         </a>
                                     @endforeach
                                 </div>
@@ -85,7 +85,7 @@
                                         <div class="content-price">
                                             <div class="one-pay">
                                                 <div class="unit-price">
-                                                    {{ number_format($detailProduct->product_price, 0, ',', '.') }} đ
+                                                    {{ number_format($detailProduct['productPrice'], 0, ',', '.') }} đ
                                                 </div>
                                                 <div class="price-discount">
                                                     <span
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="comment-zone">
-                <form class="cmt-zone" data-id="{{ $detailProduct->id }}">
+                <form class="cmt-zone" data-id="{{ $detailProduct['productId'] }}">
                     <input type="text" placeholder="Nhập nội dung bình luận ..." class="input-cmt">
                     <button type="submit">Gửi bình luận</button>
                 </form>
@@ -175,10 +175,10 @@
             <div class="show-detail-option-zone">
                 <h3>Thông số chi tiết</h3>
                 <div class="list-basic-option">
-                    @foreach ($basicOption as $item)
+                    @foreach ($detailProduct['basicOption'] as $item)
                         <div class="item-option">
-                            <span>{{ $item->basic_option_name }}</span>
-                            <span>{{ $item->basic_option_description }}</span>
+                            <span>{{ $item['basicOptionName'] }}</span>
+                            <span>{{ $item['basicOptionDescription'] }}</span>
                         </div>
                     @endforeach
                 </div>
