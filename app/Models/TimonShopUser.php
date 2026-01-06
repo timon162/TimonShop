@@ -27,8 +27,8 @@ class TimonShopUser extends Authenticatable
             ?: 'https://cdn-icons-png.flaticon.com/256/3293/3293466.png';
     }
 
-    public function order()
+    public function bills()
     {
-        return $this->hasMany(TimonShopOrders::class, 'user_id');
+        return $this->hasMany(TimonShopBills::class, 'user_id');
     }
 }

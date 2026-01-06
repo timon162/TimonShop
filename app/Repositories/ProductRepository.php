@@ -60,10 +60,16 @@ class ProductRepository implements ProductInterfaceRepository
         return $buyOption;
     }
 
-    public function getProductById($id): TimonShopProduct
+    public function getProductById(int $id): TimonShopProduct
     {
         $product = TimonShopProduct::with(['category', 'supplier'])->findOrFail($id);
 
+        return $product;
+    }
+
+    public function deleteProduct(int $id)
+    {
+        $product = TimonShopProduct::where('id', $id)->delete();
         return $product;
     }
 }

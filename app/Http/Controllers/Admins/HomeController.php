@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $product = $this->productSevice->getProduct();
-        return view('admins.content_admins.content_homes.home_view', ['dataProduct' => $product]);
+        $dataProduct = $this->productSevice->getProduct()->data;
+        return view('admins.content_admins.content_homes.home_view', compact('dataProduct'));
     }
 }

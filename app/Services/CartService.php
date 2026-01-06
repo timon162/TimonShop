@@ -6,10 +6,17 @@ use App\Exceptions\ProductException;
 use App\Results\CartResult;
 use App\Services\Interfaces\CartInterfaceService;
 use App\Repositories\Interfaces\ProductInterfaceRepository;
+use App\Repositories\Interfaces\BillInterfaceRepository;
+use App\Exceptions\BillException;
+use App\Exceptions\NullException;
+use App\Models\TimonShopBills;
 
 class CartService implements CartInterfaceService
 {
-    public function __construct(protected ProductInterfaceRepository $repoProduct) {}
+    public function __construct(
+        protected ProductInterfaceRepository $repoProduct,
+        protected BillInterfaceRepository $billRepo
+    ) {}
 
     public function setTotalCart(array $cartSession): CartResult
     {
@@ -19,10 +26,10 @@ class CartService implements CartInterfaceService
             $priceTotalCart += $item['total_price_product'];
         }
 
-        return new CartResult(
-            cartSession: $cartSession,
-            totalCart: $priceTotalCart,
-        );
+        return new CartResult([
+            'cart' => $cartSession,
+            'totalCart' => $priceTotalCart,
+        ]);
     }
 
     public function getTotalPriceCart(): CartResult
@@ -74,5 +81,43 @@ class CartService implements CartInterfaceService
         }
 
         session(['cart' => $cartSession]);
+    }
+
+    public function postBill(): TimonShopBills
+    {
+        $dataSessionCart = [];
+        $cart = session('cart', []);
+        $totalBill = 0;
+
+        if (empty($cart)) {
+            throw new NullException('chưa có sản phẩm');
+        }
+        foreach ($cart as $items) {
+
+            $totalBill += $items['total_price_product'];
+
+            $dataSessionCart[] = [
+                'product_id' => $items['product_id'],
+                'buy_option_id' => 5,
+                'bill_quantity' =>  $items['product_quantity'],
+                'bill_price' => $items['total_price_product'],
+                'created_at' => now(),
+            ];
+        }
+
+        $dataUser = [
+            'user_id' => auth()->id(),
+            'total_price_bill' => $totalBill,
+            'created_at' => now(),
+        ];
+
+        $dataBill = $this->billRepo->postBill($dataUser, $dataSessionCart);
+
+        if (!$dataBill) {
+            throw new BillException();
+        }
+
+        session()->forget('cart');
+        return  $dataBill;
     }
 }

@@ -29,25 +29,55 @@
                 <th>Tùy chỉnh thương hiệu</th>
             </tr>
             <tbody class="detail-items-supplier">
-                @foreach ($dataSupplier as $key => $item)
-                    <tr>
+                @foreach ($dataSupplier['supplier'] as $key => $item)
+                    <tr class="item-infor-supplier">
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $item->supplier_name }}</td>
+                        <td>{{ $item['supplierName'] }}</td>
                         <td>
                             <div class="img-infor-supplier-zone">
-                                <img src="{{ $item->supplier_image }}"class="img-infor-supplier">
+                                <img src="{{ $item['supplierImage'] }}" class="img-infor-supplier">
                             </div>
                         </td>
                         <td>
                             <div class="button-infor-supplier-zone">
-                                <a class="show-detail-supplier" data-id="" href="">
-                                    Xem chi tiết
-                                </a>
-                                <a class="update-detail-supplier" data-id="">
+                                <a class="update-detail-supplier" data-id="" href="">
                                     Cập nhật
                                 </a>
-                                <a class="delete-detail-supplier" data-id="">
+                                <a class="delete-detail-supplier" data-id="{{ $item['supplierId'] }}">
                                     Xóa
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="item-edit-supplier" style="display:none">
+                        <td>{{ $key + 1 }}</td>
+                        <td><input class="input-edit-name-supplier" type="text" value="{{ $item['supplierName'] }}">
+                        </td>
+                        <td>
+                            <div class="img-edit-supplier-zone">
+                                <div class="custom-file-edit-supplier-btn">
+                                    <img src="{{ $item['supplierImage'] }}" class="img-edit-supplier">
+                                    <button type="button" class="close-old-file-edit-supplier">X</button>
+                                </div>
+                            </div>
+                            <div class="img-edit-new-supplier-zone"style="display:none">
+                                <div class="img-file-edit-supplier">
+                                    <label class="btn-image-supplier-eidt">
+                                        Chọn ảnh
+                                        <input type="file" class="input-image-edit-supplier" hidden>
+                                    </label>
+                                    <button type="button" class="close-img-file-edit-supplier">X</button>
+                                    <img class="class-img-file-edit-supplier" style="display:none">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button-edit-supplier-zone">
+                                <a class="submit-edit-detail-supplier" data-id="{{ $item['supplierId'] }}">
+                                    Cập nhật
+                                </a>
+                                <a class="submit-back-supplier">
+                                    Quay lại
                                 </a>
                             </div>
                         </td>

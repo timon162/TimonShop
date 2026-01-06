@@ -3,13 +3,13 @@
     <div class="container-information-content">
         <div class="header-information-content">
             <div class="list-title-information-content">
-                <div class="item-title-information-content " data-target='id-container-information-product'>
+                <div class="item-title-information-content active" data-target='id-container-information-product'>
                     <span>Danh sách sản phẩm</span>
                 </div>
                 <div class="item-title-information-content" data-target='id-container-information-category'>
                     <span>Danh sách loại sản phẩm</span>
                 </div>
-                <div class="item-title-information-content active" data-target='id-container-information-supplier'>
+                <div class="item-title-information-content" data-target='id-container-information-supplier'>
                     <span>Danh sách thương hiệu</span>
                 </div>
             </div>
@@ -18,10 +18,10 @@
             <div id="id-container-information-category" class="form-information-content">
                 @include('admins/content_admins/content_information_products/information_category')
             </div>
-            <div id="id-container-information-supplier" class="form-information-content active">
+            <div id="id-container-information-supplier" class="form-information-content">
                 @include('admins/content_admins/content_information_products/information_supplier')
             </div>
-            <div id="id-container-information-product" class="form-information-content ">
+            <div id="id-container-information-product" class="form-information-content active">
                 @include('admins/content_admins/content_information_products/information_product')
             </div>
         </div>

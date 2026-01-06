@@ -7,6 +7,11 @@ use App\Services\Interfaces\ProductInterfaceService;
 use App\Models\TimonShopProduct;
 use Illuminate\Support\Collection;
 use App\Exceptions\ProductException;
+use App\Results\DetailProductResult;
+use App\Results\ProductResult;
+use Illuminate\Cache\RateLimiting\Limit;
+
+use function PHPSTORM_META\map;
 
 class ProductService implements ProductInterfaceService
 {
@@ -61,12 +66,6 @@ class ProductService implements ProductInterfaceService
         return $imageDescription;
     }
 
-    public function getProduct(): Collection
-    {
-        $product = $this->repoProduct->getProduct();
-        return $product;
-    }
-
     public function getBasicOptionById(int $id): Collection
     {
         $basicOption = $this->repoProduct->getBasicOptionById($id);
@@ -77,5 +76,57 @@ class ProductService implements ProductInterfaceService
     {
         $buyOption = $this->repoProduct->getBuyOptionById($id);
         return $buyOption;
+    }
+
+    public function getProduct(): ProductResult
+    {
+        $response = $this->repoProduct->getProduct();
+        $product = $response->map(fn($items) => [
+            'productImage' => $items->product_image,
+            'productName' => $items->product_name,
+            'productCode' => $items->product_code,
+            'productId' => $items->id,
+            'productPrice' => $items->product_price,
+            'productQuantity' => $items->product_quantity,
+            'productDecription' => $items->product_decription,
+            'categoryName' => $items->category->category_name,
+            'categoryImage' => $items->category->category_image,
+            'supplierName' => $items->supplier->supplier_name,
+            'supplierImage' => $items->supplier->supplier_image,
+        ])->toArray();
+        return new ProductResult($product);
+    }
+
+    public function detailProduct(int $id): DetailProductResult
+    {
+        $product = $this->getProductById($id);
+        $dataBasicOption = $this->getBasicOptionById($id);
+        $dataBuyOption = $this->getBuyOptionById($id);
+        $dataImageDescription = $this->getImageDescriptionById($id);
+        $dataShowOption = $dataBasicOption->take(3);
+        $showOption = $dataShowOption->toArray();
+
+        $basicOption = $dataBasicOption->map(
+            fn($items) => [
+                'basicOptionName' => $items->basic_option_name,
+                'basicOptionDescription' => $items->basic_option_description,
+            ]
+        )->toArray();
+
+        $nameBuyOption = $dataBuyOption->groupBy('buy_option_name')->map(
+            fn($items) => $items->map(
+                fn($i) => [
+                    'buyOptionDescription' => $i->buy_option_description,
+                ]
+            )->toArray()
+        )->toArray();
+
+        $imageDescription = $dataImageDescription->map(
+            fn($items) => [
+                'imageUrl' => $items->image_url,
+            ]
+        )->toArray();
+
+        return new DetailProductResult($product, $nameBuyOption, $showOption, $imageDescription, $basicOption);
     }
 }

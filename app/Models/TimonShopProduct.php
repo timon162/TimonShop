@@ -8,7 +8,7 @@ use App\Models\TimonShopCategory;
 use App\Models\TimonShopImgDescriptionProduct;
 use App\Models\TimonShopBasicOptionProduct;
 use App\Models\TimonShopBuyOptionProduct;
-use App\Models\TimonShopOrders;
+use App\Models\TimonShopBills;
 
 class TimonShopProduct extends Model
 {
@@ -48,8 +48,8 @@ class TimonShopProduct extends Model
         return $this->hasMany(TimonShopBuyOptionProduct::class, 'product_id');
     }
 
-    public function order()
+    public function bill()
     {
-        return $this->hasMany(TimonShopOrders::class, 'product_id');
+        return $this->hasMany(TimonShopBills::class, 'product_id');
     }
 }

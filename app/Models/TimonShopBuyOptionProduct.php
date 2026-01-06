@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TimonShopProduct;
-use App\Models\TimonShopOrders;
+use App\Models\TimonShopBills;
 
 class TimonShopBuyOptionProduct extends Model
 {
@@ -20,8 +20,8 @@ class TimonShopBuyOptionProduct extends Model
         return $this->belongsTo(TimonShopProduct::class, 'product_id');
     }
 
-    public function order()
+    public function bill()
     {
-        return $this->hasMany(TimonShopOrders::class, 'buy_option_id');
+        return $this->hasMany(TimonShopBills::class, 'buy_option_id');
     }
 }

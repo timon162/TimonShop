@@ -31,15 +31,15 @@
 
 <div class="profile-section mt-auto p-2 d-flex">
     <div class="d-flex align-items-center">
-        @auth
-            <div class="avatar-sidebar">
-                <img src="{{ auth()->user()->image_user }}" style="height:45px" class="rounded-circle" alt="Profile">
-            </div>
-            <div class="profile-info">
-                <h6 class="text-white mb-0">{{ auth()->user()->name }}</h6>
-                <small class="text-white">{{ auth()->user()->email }}</small>
-            </div>
-        @endauth
+
+        <div class="avatar-sidebar">
+            <img src="{{ $userAvatar }}" style="height:45px" class="rounded-circle" alt="Profile">
+        </div>
+        <div class="profile-info">
+            <h6 class="text-white mb-0">{{ $userProfile->name }}</h6>
+            <small class="text-white">{{ $userProfile->email }}</small>
+        </div>
+
         <div class="logout-zone">
             <button id="id-Logout-btn">Logout</button>
         </div>
