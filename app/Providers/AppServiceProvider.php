@@ -58,6 +58,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Interfaces\BillInterfaceRepository::class,
             \App\Repositories\BillRepository::class
         );
+
+        $this->app->bind(
+            \App\Services\Interfaces\UserInterfaceService::class,
+            \App\Services\UserService::class
+        );
     }
 
     /**
