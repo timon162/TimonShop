@@ -10,6 +10,8 @@ interface ProductInterfaceRepository
 {
     public function postProduct(array $data, array $urlImgDecriptions): TimonShopProduct;
 
+    public function deleteProduct(int $id): int;
+
     public function getProduct(): Collection;
 
     public function getProductById(int $id): TimonShopProduct;
@@ -19,4 +21,6 @@ interface ProductInterfaceRepository
     public function getBasicOptionById(int $id): Collection;
 
     public function getBuyOptionById(int $id): Collection;
+
+    public function updateProduct(array $data, array $urlImgDecriptions): TimonShopProduct;
 }

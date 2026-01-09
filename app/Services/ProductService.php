@@ -54,6 +54,67 @@ class ProductService implements ProductInterfaceService
         return $product;
     }
 
+    public function deleteProduct(int $id): void
+    {
+        $result = $this->repoProduct->deleteProduct($id);
+        if ($result === 0) {
+            throw new FalseException();
+        };
+    }
+
+    public function updateProduct(array $data): void
+    {
+
+        $urlCategory = null;
+        $urlImgDecriptions = [];
+
+        if (!empty($data['updateImgDescription'])) {
+            foreach ($data['updateImgDescription'] as $items) {
+                $path = $items->store('img_decription_product', 'public');
+                $urlImg = asset('storage/' . $path);
+                $urlImgDecriptions[] = $urlImg;
+            }
+        }
+
+        if (!empty($data['oldImageDecription'])) {
+            foreach ($data['oldImageDecription'] as $old) {
+                $urlImgDecriptions[] = $old['image'];
+            }
+        }
+
+        if (!empty($data['file_main_img_update_product'])) {
+            $path = $data['file_main_img_update_product']->store('supplier', 'public');
+            $urlCategory = asset('storage/' . $path);
+        }
+
+        $postData = [
+            'product_id' => $data['product_id'],
+            'product_name' => $data['name_update_product'],
+            'category_id' => $data['update_category_select'],
+            'supplier_id' => $data['update_supplier_select'],
+            'product_price' => $data['price_update_product'],
+            'product_quantity' => $data['quantity_update_product'],
+            'product_image' => $urlCategory,
+            'product_code' => $data['code_update_product'],
+            'product_decription' => $data['decription_update_product'],
+            'basicOption' => $data['updateBasicOptions'],
+            'buyOption' => $data['updateBuyOptions'],
+            'created_at' => now(),
+        ];
+
+        foreach ($postData as $key => $newPostData) {
+            if (empty($newPostData)) {
+                unset($postData[$key]);
+            }
+        }
+
+        $product = $this->repoProduct->updateProduct($postData, $urlImgDecriptions);
+
+        if (!$product) {
+            throw new ProductException();
+        }
+    }
+
     public function getProductById(int $id): TimonShopProduct
     {
         $product = $this->repoProduct->getProductById($id);
@@ -113,6 +174,14 @@ class ProductService implements ProductInterfaceService
             ]
         )->toArray();
 
+        $buyOption = $dataBuyOption->map(
+            fn($items) => [
+                'buyOptionName' => $items->buy_option_name,
+                'buyOptionDescription' => $items->buy_option_description,
+                'buyOptionPrice' => $items->buy_option_price,
+            ]
+        )->toArray();
+
         $nameBuyOption = $dataBuyOption->groupBy('buy_option_name')->map(
             fn($items) => $items->map(
                 fn($i) => [
@@ -127,6 +196,6 @@ class ProductService implements ProductInterfaceService
             ]
         )->toArray();
 
-        return new DetailProductResult($product, $nameBuyOption, $showOption, $imageDescription, $basicOption);
+        return new DetailProductResult($product, $nameBuyOption, $showOption, $imageDescription, $basicOption, $buyOption);
     }
 }

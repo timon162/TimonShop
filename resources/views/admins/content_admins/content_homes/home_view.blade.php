@@ -21,18 +21,21 @@
                             </div>
 
                             <div class="pay-zoneprice-home-admin d-flex flex-column justify-content-between ">
-                                <span class="price-home-admin">{{ $item['productPrice'] }} đ</span>
+                                <span class="price-home-admin">{{ number_format($item['productPrice'], 0, ',', '.') }}
+                                    đ</span>
                                 <div class="change-product-home-admin d-flex flex-column justify-content-between">
-                                    <button type="button"
-                                        class="btn-add-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill">
+                                    <a
+                                        class="btn-add-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill d-flex justify-content-center">
                                         Add to Cart
-                                    </button>
-                                    <button class="btn-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill">
+                                    </a>
+                                    <a class="btn-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill d-flex justify-content-center"
+                                        href="{{ route('update.product.view', ['product_id' => $item['productId']]) }}">
                                         Update product
-                                    </button>
-                                    <button class="btn-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill">
+                                    </a>
+                                    <a class="btn-delete-home-admin btn-home-admin-custom text-white px-4 py-2 rounded-pill d-flex justify-content-center"
+                                        data-id-delete-product="{{ $item['productId'] }}">
                                         Delete product
-                                    </button>
+                                    </a>
                                 </div>
 
                             </div>

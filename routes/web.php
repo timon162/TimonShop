@@ -44,6 +44,8 @@ Route::delete('/delete-supplier', [ProductController::class, 'deleteSupplier'])-
 Route::post('/update-supplier', [ProductController::class, 'updateSupplier'])->name('update.supplier');
 Route::delete('/delete-category', [ProductController::class, 'deleteCategory'])->name('delete.category');
 Route::post('/update-category', [ProductController::class, 'updateCategory'])->name('update.category');
+Route::delete('/delete-product', [ProductController::class, 'deleteProduct'])->name('delete.product');
+Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('update.product');
 
 Route::get('/test-supplier', function () {
     $repo = app(\App\Repositories\ProductRepository::class);

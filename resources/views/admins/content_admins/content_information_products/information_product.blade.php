@@ -44,7 +44,7 @@
                             </div>
                         </td>
                         <td>{{ $item['productCode'] }}</td>
-                        <td>{{ $item['productPrice'] }}</td>
+                        <td>{{ number_format($item['productPrice'], 0, ',', '.') }} đ</td>
                         <td>{{ $item['categoryName'] }}</td>
                         <td>{{ $item['productQuantity'] }}</td>
                         <td>{{ $item['supplierName'] }}</td>

@@ -16,7 +16,7 @@
                             <span>{{ $item['product_supplier'] }}</span>
                         </div>
                         <div class="price-product-cart-view">
-                            <span>{{ $item['total_price_product'] }}</span>
+                            <span>{{ number_format($item['total_price_product'], 0, ',', '.') }} đ</span>
                         </div>
                         <div class="quantity-product-cart-view">
                             <button class="minus-quantity-product-cart-view">-</button>
@@ -32,13 +32,13 @@
                 <span>Thông tin thanh toán</span>
                 <div class="total-pay-cart-view">
                     <span>Tổng tiền</span>
-                    <p>{{ $totalCart }}</p>
+                    <p>{{ number_format($totalCart, 0, ',', '.') }} đ</p>
                 </div>
             </div>
             <div class="content-pay-cart-view">
                 <div class="total-discount-cart-view">
                     <span>Tổng khuyến mãi</span>
-                    <p>-760.000đ</p>
+                    <p>0đ</p>
                 </div>
                 <div class="list-discount-cart-view">
                     <div class="item-discount-cart-view">

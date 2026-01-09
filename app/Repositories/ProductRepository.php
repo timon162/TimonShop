@@ -9,6 +9,7 @@ use App\Models\TimonShopProduct;
 use Illuminate\Support\Collection;
 use App\Models\TimonShopBasicOptionProduct;
 use App\Models\TimonShopBuyOptionProduct;
+use Illuminate\Support\Arr;
 
 class ProductRepository implements ProductInterfaceRepository
 {
@@ -18,6 +19,42 @@ class ProductRepository implements ProductInterfaceRepository
         foreach ($urlImgDecriptions as $items) {
             $product->imgDescription()->create([
                 'image_url' => $items,
+            ]);
+        }
+        foreach ($data['basicOption'] as $items) {
+            $product->basicOption()->create([
+                'basic_option_name' => $items['name'],
+                'basic_option_description' => $items['detail']
+            ]);
+        }
+        foreach ($data['buyOption'] as $items) {
+            $product->buyOption()->create([
+                'buy_option_name' => $items['name'],
+                'buy_option_description' => $items['detail'],
+                'buy_option_price' => $items['price']
+            ]);
+        }
+        return $product;
+    }
+
+    public function deleteProduct(int $id): int
+    {
+        $product = TimonShopProduct::where('id', $id)->delete();
+        return $product;
+    }
+
+    public function updateProduct(array $data, array $urlImgDecriptions): TimonShopProduct
+    {
+        $product = TimonShopProduct::findOrFail($data['product_id']);
+
+        $product->update($data);
+        $product->imgDescription()->delete();
+        $product->basicOption()->delete();
+        $product->buyOption()->delete();
+
+        foreach ($urlImgDecriptions as $url) {
+            $product->imgDescription()->create([
+                'image_url' => $url
             ]);
         }
         foreach ($data['basicOption'] as $items) {
@@ -64,12 +101,6 @@ class ProductRepository implements ProductInterfaceRepository
     {
         $product = TimonShopProduct::with(['category', 'supplier'])->findOrFail($id);
 
-        return $product;
-    }
-
-    public function deleteProduct(int $id)
-    {
-        $product = TimonShopProduct::where('id', $id)->delete();
         return $product;
     }
 }

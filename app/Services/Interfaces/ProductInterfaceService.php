@@ -11,6 +11,8 @@ interface ProductInterfaceService
 {
     public function postProduct(array $data): TimonShopProduct;
 
+    public function deleteProduct(int $id): void;
+
     public function getProduct(): ProductResult;
 
     public function getProductById(int $id): TimonShopProduct;

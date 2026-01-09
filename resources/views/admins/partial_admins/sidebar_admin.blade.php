@@ -37,10 +37,6 @@
         <span class="hide-on-collapse">Profile</span>
     </a>
 
-    <a href="#" class="sidebar-link text-decoration-none p-3">
-        <i class="fa fa-cog me-3"></i>
-        <span class="hide-on-collapse">Settings</span>
-    </a>
 </div>
 
 <div class="profile-section mt-auto p-2 d-flex">

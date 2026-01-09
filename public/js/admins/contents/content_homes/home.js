@@ -28,3 +28,35 @@ $(".btn-add-home-admin").on("click", function (e) {
         },
     });
 });
+
+$(".btn-delete-home-admin").on("click", function (e) {
+    e.preventDefault();
+    const idProduct = $(this).data("id-delete-product");
+
+    $.ajax({
+        type: "DELETE",
+        url: "/delete-product",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        data: {
+            product_id: idProduct,
+        },
+        success: function (res) {
+            Swal.fire({
+                title: "Timon Shop",
+                text: res.success,
+                icon: "success",
+            }).then(() => {
+                location.reload();
+            });
+        },
+        error: function (errors) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: errors,
+            });
+        },
+    });
+});

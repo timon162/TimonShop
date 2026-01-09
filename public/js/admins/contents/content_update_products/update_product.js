@@ -81,6 +81,7 @@ $("#update-btn-add-img").on("change", function () {
                     <span class="update-delete-img-decription">X</span>
                 </div>`;
     $(".update-list-description-img").prepend(html);
+    $(this).val("");
 });
 
 $(".update-list-description-img").on(
@@ -111,3 +112,108 @@ $(".update-zone-option-buy-product").on(
         $(this).closest(".update-input-buy-option-product").remove();
     }
 );
+
+$("#id-form-container-update-infor-product").on("submit", function (e) {
+    e.preventDefault();
+    let formData = new FormData();
+
+    formData.append("product_id", $(this).data("id-product"));
+    formData.append("name_update_product", $("#input-name-update").val());
+    formData.append("price_update_product", $("#input-price-update").val());
+    formData.append(
+        "quantity_update_product",
+        $("#input-quantity-update").val()
+    );
+    formData.append("code_update_product", $("#input-code-update").val());
+    formData.append(
+        "decription_update_product",
+        $("#input-decription-update").val()
+    );
+
+    const input = $("#update-imageInput")[0];
+
+    if (input.files.length > 0) {
+        formData.append("file_main_img_update_product", input.files[0]);
+    }
+
+    formData.append(
+        "update_category_select",
+        $(".update-category-select").val()
+    );
+
+    formData.append(
+        "update_supplier_select",
+        $(".update-supplier-select").val()
+    );
+
+    if (listUpdateFilesImg.length > 0) {
+        listUpdateFilesImg.forEach((file, i) => {
+            formData.append(`updateImgDescription[${i}]`, file.file);
+        });
+    }
+
+    $(".update-img-decription").each(function (i) {
+        const srcOldDecription = $(this)
+            .find(".old-img-decription")
+            .attr("src");
+        if (srcOldDecription) {
+            formData.append(
+                `oldImageDecription[${i}][image]`,
+                srcOldDecription
+            );
+        }
+    });
+
+    $(".update-input-basic-option-product").each(function (i) {
+        formData.append(
+            `updateBasicOptions[${i}][name]`,
+            $(this).find(".update-name-basic-option").val()
+        );
+        formData.append(
+            `updateBasicOptions[${i}][detail]`,
+            $(this).find(".update-detail-basic-option").val()
+        );
+    });
+
+    $(".update-input-buy-option-product").each(function (i) {
+        formData.append(
+            `updateBuyOptions[${i}][name]`,
+            $(this).find(".update-name-buy-option").val()
+        );
+        formData.append(
+            `updateBuyOptions[${i}][detail]`,
+            $(this).find(".update-detail-buy-option").val()
+        );
+        formData.append(
+            `updateBuyOptions[${i}][price]`,
+            $(this).find(".update-price-buy-option").val()
+        );
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/update-product",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (res) {
+            Swal.fire({
+                title: "Cập nhật thành công sản phẩm",
+                icon: "success",
+            });
+        },
+        error: function (error) {
+            let errors = error.responseJSON.errors;
+            for (let field in errors) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Cập nhật sản phẩm thất bại",
+                    text: errors[field][0],
+                });
+            }
+        },
+    });
+});
