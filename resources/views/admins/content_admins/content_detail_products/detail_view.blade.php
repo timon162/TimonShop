@@ -40,9 +40,9 @@
                             <div class="detail-outstanding-information">
                                 @foreach ($detailProduct['showOption'] as $item)
                                     <div class="wrap-detail-outstanding-information-1">
-                                        <p>{{ $item['basicOptionName'] }}</p>
+                                        <p>{{ $item['basic_option_name'] }}</p>
                                         <div class="image-outstanding-information">
-                                            <p>{{ $item['basicOptionDescription'] }}</p>
+                                            <p>{{ $item['basic_option_description'] }}</p>
                                         </div>
                                     </div>
                                 @endforeach

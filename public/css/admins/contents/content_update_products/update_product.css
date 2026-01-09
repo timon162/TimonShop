@@ -1,4 +1,4 @@
-#id-form-container-infor-product {
+#id-form-container-update-infor-product {
     width: 100%;
     height: auto;
     padding: 1rem;
@@ -142,7 +142,7 @@
     flex-direction: column;
 }
 
-.update-btn-create-product {
+.update-btn-update-product {
     height: 50px;
     width: 90%;
     border-radius: 15px;

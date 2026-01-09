@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\FalseException;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
+use App\Services\Interfaces\UserInterfaceService;
+
 
 class UserController extends Controller
 {
+
+    public function __construct(protected UserInterfaceService $userService) {}
 
     public function viewProfile()
     {
@@ -19,25 +22,11 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image_user')) {
-            $path = $request->file('image_user')->store('avatar', 'public');
-            $data['image_user'] = asset('storage/' . $path);
-        } else {
-            unset($data['image_user']);
+        try {
+            $this->userService->updateProfile($data);
+            return response()->json(['success' => 'Cập nhật thành công'], 201);
+        } catch (FalseException $error) {
+            return response()->json(['error' => $error->getMessage()], 401);
         }
-        $user = Auth::user();
-
-        $updated = $user->update(Arr::only($data, [
-            'email',
-            'name',
-            'image_user',
-            'phone_number',
-        ]));
-
-        if (!$updated) {
-            return response()->json(['mess' => 'Cập nhật thất bại'], 401);
-        }
-
-        return response()->json(['mess' => 'Cập nhật thành công']);
     }
 }

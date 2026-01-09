@@ -9,7 +9,7 @@ class DetailProductResult
 {
     public array $data;
 
-    public function __construct(TimonShopProduct $product, array $nameBuyOption, array $showOption, array $imageDescription, array $basicOption)
+    public function __construct(TimonShopProduct $product, array $nameBuyOption, array $showOption, array $imageDescription, array $basicOption, array $buyOption)
     {
         $this->data = [
             'productImage' => $product->product_image,
@@ -23,10 +23,13 @@ class DetailProductResult
             'categoryImage' => $product->category->category_image,
             'supplierName' => $product->supplier->supplier_name,
             'supplierImage' => $product->supplier->supplier_image,
+            'categoryId' => $product->category->id,
+            'supplierId' => $product->supplier->id,
             'nameBuyOption' => $nameBuyOption,
             'showOption' => $showOption,
             'imageDescription' => $imageDescription,
             'basicOption' => $basicOption,
+            'buyOption' => $buyOption,
         ];
     }
 }

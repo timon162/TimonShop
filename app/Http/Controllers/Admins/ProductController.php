@@ -18,8 +18,8 @@ use App\Http\Requests\CategoryIdRequest;
 use App\Http\Requests\ProductIdRequest;
 use App\Http\Requests\SupplierIdRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Requests\UpdateSupplierRequest;
-use App\Services\ProductService;
 
 class ProductController extends Controller
 {
@@ -144,6 +144,30 @@ class ProductController extends Controller
         try {
             $product = $this->productService->postProduct($validated);
             return response()->json(['mess' => 'Thêm thành công', 'nameProduct' => $product['product_name']], 201);
+        } catch (ProductException $error) {
+            return response()->json($error->getMessage(), 401);
+        }
+    }
+
+    public function deleteProduct(ProductIdRequest $request)
+    {
+        $validated = $request->validated()['product_id'];
+
+        try {
+            $this->productService->deleteProduct($validated);
+            return response()->json(['success' => 'Đã xóa'], 201);
+        } catch (FalseException $error) {
+            return response()->json(['error' => $error->getMessage()], 404);
+        }
+    }
+
+    public function updateProduct(UpdateProductRequest $request)
+    {
+        $validated = $request->validated();
+
+        try {
+            $this->productService->updateProduct($validated);
+            return response()->json(['mess' => 'Cập nhật thành công'], 201);
         } catch (ProductException $error) {
             return response()->json($error->getMessage(), 401);
         }

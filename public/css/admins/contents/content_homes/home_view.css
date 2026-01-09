@@ -55,6 +55,7 @@
     background: linear-gradient(45deg, #6366f1, #8b5cf6);
     border: none;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .btn-home-admin-custom:hover {
