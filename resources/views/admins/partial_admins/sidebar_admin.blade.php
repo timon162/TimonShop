@@ -45,8 +45,8 @@
             <img src="{{ $userAvatar }}" style="height:45px" class="rounded-circle" alt="Profile">
         </div>
         <div class="profile-info">
-            <h6 class="text-white mb-0">{{ $userProfile->name }}</h6>
-            <small class="text-white">{{ $userProfile->email }}</small>
+            <h6 class="text-white mb-0">{{ $userName }}</h6>
+            <small class="text-white">{{ $userEmail }}</small>
         </div>
         <div class="logout-zone">
             <button id="id-Logout-btn">Logout</button>

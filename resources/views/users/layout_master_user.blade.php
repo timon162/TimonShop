@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('css/partials/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/partials/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/users/contents/profile_user.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/contents/content_homes/home_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/contents/content_carts/cart_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/contents/content_detail_products/detail_product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/users/layout_master_user.css') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Default View</title>
@@ -36,7 +39,12 @@
         </div>
     </main>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/users/partials/sidebar.js') }}"></script>
 <script src="{{ asset('js/users/contents/profile_user.js') }}"></script>
+<script src="{{ asset('js/users/contents/content_homes/home.js') }}"></script>
+<script src="{{ asset('js/users/contents/content_carts/cart.js') }}"></script>
+<script src="{{ asset('js/users/contents/content_detail_products/detail_product.js') }}"></script>
 
 </html>

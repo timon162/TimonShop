@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\Interfaces\CategoryInterfaceService;
-use App\Http\Requests\CategoryRequest;
+use App\Services\Interfaces\ProductInterfaceService;
 
 class DefaultController extends Controller
 {
-    public function __construct(protected CategoryInterfaceService $categoryService) {}
+    public function __construct(
+        protected ProductInterfaceService $productService,
+    ) {}
+
 
     public function viewDefault()
     {
-        return view('defaults.content_default');
+        $dataProduct = $this->productService->getProduct()->data;
+        return view(
+            'defaults.content_default',
+            compact('dataProduct')
+        );
+        return view('');
     }
 }

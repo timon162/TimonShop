@@ -1,6 +1,6 @@
 function numberQuatity(step, button) {
-    let item = button.closest(".item-product-cart-view");
-    let input = item.find(".input-quantity-cart-view");
+    let item = button.closest(".user-item-product-cart-view");
+    let input = item.find(".user-input-quantity-cart-view");
 
     let quantity = parseInt(input.val());
     let valueQuantity = quantity + step;
@@ -23,12 +23,12 @@ function numberQuatity(step, button) {
     });
 }
 
-$(".minus-quantity-product-cart-view").on("click", function (e) {
+$(".user-minus-quantity-product-cart-view").on("click", function (e) {
     e.preventDefault();
     numberQuatity(-1, $(this));
 });
 
-$(".plus-quantity-product-cart-view").on("click", function (e) {
+$(".user-plus-quantity-product-cart-view").on("click", function (e) {
     e.preventDefault();
     numberQuatity(1, $(this));
 });

@@ -23,7 +23,7 @@
                 </div>
                 <div class="row-infor">
                     <p class="title-infor">Tiền</p>
-                    <p>2.000.000</p>
+                    <p> {{ number_format($userProfile->money, 0, ',', '.') }} đ</p>
                 </div>
             @endauth
             <div class="btn-post-zone">

@@ -8,25 +8,24 @@
 </div>
 
 <div class="nav flex-column">
-    <a href="" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('Home.user') }}"
+        class="sidebar-link {{ request()->routeIs('Home.user') ? 'active' : '' }} text-decoration-none p-3">
         <i class="fas fa-home me-3"></i>
         <span class="hide-on-collapse">Home</span>
     </a>
 
-    <a href="" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('Cart.user') }}"
+        class="sidebar-link {{ request()->routeIs('Cart.user') ? 'active' : '' }} text-decoration-none p-3">
         <i class='fa fa-shopping-cart me-3'></i>
         <span class="hide-on-collapse">Cart</span>
     </a>
 
-    <a href="#" class="sidebar-link text-decoration-none p-3">
+    <a href="{{ route('profile.user') }}"
+        class="sidebar-link {{ request()->routeIs('profile.user') ? 'active' : '' }} text-decoration-none p-3">
         <i class="fa fa-address-card me-3"></i>
         <span class="hide-on-collapse">Profile user</span>
     </a>
 
-    <a href="#" class="sidebar-link text-decoration-none p-3">
-        <i class="fas fa-gear me-3"></i>
-        <span class="hide-on-collapse">Settings</span>
-    </a>
 </div>
 
 <div class="profile-section mt-auto p-2 d-flex">
@@ -36,8 +35,8 @@
             <img src="{{ $userAvatar }}" style="height:45px" class="rounded-circle" alt="Profile">
         </div>
         <div class="profile-info">
-            <h6 class="text-white mb-0">{{ $userProfile->name }}</h6>
-            <small class="text-white">{{ $userProfile->email }}</small>
+            <h6 class="text-white mb-0">{{ $userName }}</h6>
+            <small class="text-white">{{ $userEmail }}</small>
         </div>
 
         <div class="logout-zone">

@@ -25,6 +25,13 @@ class CartController extends Controller
         return view('admins.content_admins.content_carts.cart_view', $cartViewResult);
     }
 
+    public function userViewCart()
+    {
+        $cartViewResult = $this->carttService->getTotalPriceCart()->data;
+
+        return view('users.content_users.content_carts.cart_view', $cartViewResult);
+    }
+
     public function addToCart(ProductIdRequest $id): JsonResponse
     {
         $product_id = $id->validated()['product_id'];

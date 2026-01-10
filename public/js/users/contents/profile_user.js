@@ -16,11 +16,14 @@ $("#input-avatar-user").on("change", function () {
 $(".change-infor-user-zone").on("submit", function (e) {
     e.preventDefault();
     let formData = new FormData();
+    const image_user = $("#input-avatar-user")[0];
 
     formData.append("name", $("#input-name").val());
     formData.append("email", $("#input-email").val());
     formData.append("phone_number", $("#input-phone-number").val());
-    formData.append("image_user", $("#input-avatar-user")[0].files[0]);
+    if (image_user.files.length > 0) {
+        formData.append("image_user", image_user.files[0]);
+    }
 
     $.ajax({
         type: "POST",
@@ -34,21 +37,23 @@ $(".change-infor-user-zone").on("submit", function (e) {
         success: function (res) {
             Swal.fire({
                 title: "Wellcom To Timon Shop",
-                text: res.mess,
+                text: res.success,
                 icon: "success",
             }).then(() => {
                 location.reload();
             });
         },
         error: function (errors) {
-            let error = errors.responseJSON.errors;
-            for (let filed in error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: error[filed][0],
-                });
-            }
+            const errorObj = errors.responseJSON?.errors || {};
+            const messages = Object.values(errorObj)
+                .map((err) => `• ${err[0]}`)
+                .join("<br>");
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                html: messages,
+            });
         },
     });
     $(".infor-user-zone").css("display", "flex");
