@@ -12,7 +12,6 @@
         <div class="user-cart-zone">
             <a href="{{ route('home.view') }}" id="icon-user-login" class="icon-user"><img src="{{ $userAvatar }} "
                     style="height:45px" class="rounded-circle" alt="Profile"></a>
-            <a class="icon-cart"><i class='bx bxs-cart'></i>Giỏ hàng</a>
         </div>
     </div>
 </div>

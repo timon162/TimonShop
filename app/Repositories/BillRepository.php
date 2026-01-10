@@ -16,7 +16,7 @@ class BillRepository implements BillInterfaceRepository
         return $bill;
     }
 
-    public function postBill(array $bill, array $detailBill): TimonShopBills //$bill(id_user,total_picre) $detailbill($sessionCart)
+    public function postBill(array $bill, array $detailBill): TimonShopBills
     {
         $bill = TimonShopBills::create($bill);
 

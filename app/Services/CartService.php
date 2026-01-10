@@ -98,7 +98,6 @@ class CartService implements CartInterfaceService
 
             $dataSessionCart[] = [
                 'product_id' => $items['product_id'],
-                'buy_option_id' => 5,
                 'bill_quantity' =>  $items['product_quantity'],
                 'bill_price' => $items['total_price_product'],
                 'created_at' => now(),

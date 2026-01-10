@@ -60,6 +60,16 @@ class ProductController extends Controller
         );
     }
 
+    public function viewUserDetailProduct(int $id)
+    {
+        $detailProduct = $this->productService->detailProduct($id)->data;
+
+        return view(
+            'users.content_users.content_detail_products.detail_view',
+            compact('detailProduct')
+        );
+    }
+
     public function viewUpdateProduct(int $id)
     {
         $detailProduct = $this->productService->detailProduct($id)->data;

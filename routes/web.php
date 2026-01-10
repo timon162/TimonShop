@@ -18,9 +18,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/post-register', [AuthController::class, 'register'])->name('post.register');
 Route::post('/post-login', [AuthController::class, 'login'])->name('post.login');
+Route::get('/user-detail-product/{id}', [ProductController::class, 'viewUserDetailProduct'])->name('user.detail.view');
 
 Route::prefix('/user')->middleware('checkAuth')->group(function () {
-    Route::get('/', [UserController::class, 'viewProfile'])->name('profile.user');
+    Route::get('/', [HomeController::class, 'viewUserHome'])->name('Home.user');
+    Route::get('/cart', [CartController::class, 'userViewCart'])->name('Cart.user');
+    Route::get('/profile', [UserController::class, 'viewProfile'])->name('profile.user');
+    Route::post('/post-bill', [CartController::class, 'createBill'])->name('create.bill');
+    Route::post('/post-cart', [CartController::class, 'addToCart'])->name('add.cart');
 });
 
 Route::prefix('/admin')->middleware('checkRole')->group(function () {
@@ -29,17 +34,16 @@ Route::prefix('/admin')->middleware('checkRole')->group(function () {
     Route::get('/add-product', [ProductController::class, 'viewAddProduct'])->name('add.product.view');
     Route::get('/information-product', [ProductController::class, 'viewInformationProduct'])->name('information.product.view');
     Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
-    Route::get('/detail-product/{id}', [ProductController::class, 'viewDetailProduct'])->name('detail.view');
     Route::get('/update-product/{product_id}', [ProductController::class, 'viewUpdateProduct'])->name('update.product.view');
+    Route::get('/detail-product/{id}', [ProductController::class, 'viewDetailProduct'])->name('detail.view');
 });
 
 Route::post('/post-profile', [UserController::class, 'updateProfileUser'])->name('post.profile');
 Route::post('/post-category', [ProductController::class, 'postCategory'])->name('post.category');
 Route::post('/post-supplier', [ProductController::class, 'postSupplier'])->name('post.supplier');
 Route::post('/post-product', [ProductController::class, 'postProduct'])->name('post.product');
-Route::post('/post-cart', [CartController::class, 'addToCart'])->name('add.cart');
+
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');
-Route::post('/post-bill', [CartController::class, 'createBill'])->name('create.bill');
 Route::delete('/delete-supplier', [ProductController::class, 'deleteSupplier'])->name('delete.supplier');
 Route::post('/update-supplier', [ProductController::class, 'updateSupplier'])->name('update.supplier');
 Route::delete('/delete-category', [ProductController::class, 'deleteCategory'])->name('delete.category');
@@ -47,7 +51,7 @@ Route::post('/update-category', [ProductController::class, 'updateCategory'])->n
 Route::delete('/delete-product', [ProductController::class, 'deleteProduct'])->name('delete.product');
 Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('update.product');
 
-Route::get('/test-supplier', function () {
+Route::get('/test', function () {
     $repo = app(\App\Repositories\ProductRepository::class);
     $service = app(\App\Services\CategoryService::class);
     $controller = app(ProductController::class);

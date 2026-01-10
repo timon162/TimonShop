@@ -76,6 +76,8 @@ class AppServiceProvider extends ServiceProvider
                     ? Auth::user()->avatar
                     : 'https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png',
                 'userProfile' => Auth::check() ? Auth::user() : null,
+                'userName' => Auth::check() ? Auth::user()->name : 'tên user',
+                'userEmail' => Auth::check() ? Auth::user()->email : 'email user',
             ]);
         });
     }
