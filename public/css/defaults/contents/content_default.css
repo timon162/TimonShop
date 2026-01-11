@@ -24,6 +24,8 @@
     transition: all 0.3s ease;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -42,6 +44,13 @@
 .product-card a {
     display: flex;
     height: fit-content;
+}
+
+.content-items-product-card-home-default {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
 }
 
 .badge {

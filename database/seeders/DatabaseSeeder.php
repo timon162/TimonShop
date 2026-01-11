@@ -5,6 +5,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\TimonShopUsersSeeder;
+use Database\Seeders\TimonShopCategorieSeeder;
+use Database\Seeders\TimonShopSupplierSeeder;
+use Database\Seeders\TimonShopProductSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +19,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $this->call([TimonShopUsersSeeder::class]);
+        $this->call([TimonShopCategorieSeeder::class]);
+        $this->call([TimonShopSupplierSeeder::class]);
+        $this->call([TimonShopProductSeeder::class]);
     }
 }

@@ -11,7 +11,7 @@
                             <img id="img-product-home-user" src="{{ $item['productImage'] }}" class="product-image w-100"
                                 alt="Product">
                         </a>
-                        <div class="p-4">
+                        <div class="p-4 content-items-product-card-home-user">
                             <h5 class="fw-bold mb-3">{{ $item['productName'] }}</h5>
                             <div class="d-flex align-items-center-home-user mb-3">
                                 <div class="me-2">

@@ -87,15 +87,6 @@
                                                 <div class="user-unit-price">
                                                     {{ number_format($detailProduct['productPrice'], 0, ',', '.') }} đ
                                                 </div>
-                                                <div class="user-price-discount">
-                                                    <span
-                                                        class="user-old-price">{{ number_format(19590000, 0, ',', '.') }}đ</span>
-                                                    <span class="user-pecent-disscount"> 13% </span>
-                                                </div>
-                                                <div class="user-gift-point">
-                                                    <img src="" alt="">
-                                                    <span>+<?= number_format(4274, 0, ',', '.') ?> điểm thưởng</span>
-                                                </div>
                                             </div>
 
                                         </div>
@@ -106,20 +97,9 @@
                                             </div>
                                             <div class="user-wrap-list-voucher-product">
                                                 <div class="user-list-voucher-product">
-                                                    <div class="user-element-voucher-product">Giảm ngay 2,600,000đ áp dụng
-                                                        đến
-                                                        16/10
+                                                    <div class="user-element-voucher-product">
+                                                        {{ $detailProduct['productDecription'] }}
                                                     </div>
-                                                    <div class="user-element-voucher-product">AirPods giảm đến 500,000đ khi
-                                                        mua
-                                                        kèm
-                                                        iPhone</div>
-                                                    <div class="user-element-voucher-product">Giảm thêm đến 2.5 triệu khi
-                                                        mua kèm
-                                                        SIM FPT FVIP150/F299/F399 6-12 tháng <a href="">Xem chi
-                                                            tiết</a>
-                                                    </div>
-                                                    <div class="user-element-voucher-product">Trả góp 0%</div>
                                                 </div>
                                             </div>
                                         </div>
