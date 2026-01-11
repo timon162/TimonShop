@@ -20,10 +20,8 @@ return new class extends Migration
             $table->unsignedInteger('product_quantity');
             $table->string('product_image')->nullable();
             $table->string('product_code')->unique();
-            $table->string('product_decription');
-
+            $table->text('product_decription');
             $table->timestamps();
-
             $table->foreign('category_id')->references('id')->on('timon_shop_categories')->onDelete('cascade');
             $table->foreign('supplier_id')->references('id')->on('timon_shop_suppliers')->onDelete('cascade');
         });

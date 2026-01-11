@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('remember_token')->nullable();
             $table->string('image_user')->nullable();
             $table->string('role')->nullable();
-            $table->decimal('money')->nullable();
+            $table->decimal('money', 16, 0)->nullable();
             $table->timestamps();
         });
     }
